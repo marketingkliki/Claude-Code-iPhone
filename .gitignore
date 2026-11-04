@@ -5,3 +5,7 @@ kliki-tradein/build/render.log
 kliki-tradein/build/render.html
 kliki-tradein/assets/dl/
 kliki-tradein/build/chk/
+kliki-tradein/build/frames*/
+kliki-tradein/build/shots*/
+kliki-tradein/build/render*.html
+kliki-tradein/build/*.log

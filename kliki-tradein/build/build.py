@@ -1,9 +1,15 @@
 import base64, json, sys
-src = open('video.html', encoding='utf-8').read()
+src_name, render_name, out_name = sys.argv[1:4]
+src = open(src_name, encoding='utf-8').read()
 words = json.dumps([{"w": x["w"]} for x in json.load(open('words.json'))], ensure_ascii=False)
 def b64(p, mime): return f"data:{mime};base64," + base64.b64encode(open(p, 'rb').read()).decode()
 common = src.replace('__WORDS__', words)
-open('render.html', 'w', encoding='utf-8').write(common.replace('__FONT__', 'fonts/inter-latin.woff2').replace('__VO__', 'vo.mp3').replace('__SPL__', '../assets/spaylater-orange.png'))
-out = common.replace('__FONT__', b64('fonts/inter-latin.woff2', 'font/woff2')).replace('__VO__', b64('vo.mp3', 'audio/mpeg')).replace('__SPL__', b64('../assets/spaylater-orange.png', 'image/png'))
-open('../kliki-tradein.html', 'w', encoding='utf-8').write(out)
-print('ok', len(out)//1024, 'KB')
+R = {'__FONT__': 'fonts/inter-latin.woff2', '__CAVEAT__': 'fonts/caveat-latin.woff2', '__VO__': 'vo.mp3', '__SPL__': '../assets/spaylater-orange.png'}
+M = {'__FONT__': 'font/woff2', '__CAVEAT__': 'font/woff2', '__VO__': 'audio/mpeg', '__SPL__': 'image/png'}
+r, o = common, common
+for k, v in R.items():
+    r = r.replace(k, v)
+    if k in o: o = o.replace(k, b64(v, M[k]))
+open(render_name, 'w', encoding='utf-8').write(r)
+open(out_name, 'w', encoding='utf-8').write(o)
+print('ok', len(o)//1024, 'KB')
