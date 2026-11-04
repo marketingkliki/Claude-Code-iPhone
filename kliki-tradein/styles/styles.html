@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ms"><head><meta charset="utf-8"><title>Pilihan Style</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@600;700&family=Archivo+Black&family=DM+Serif+Display:ital@0;1&display=block" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#222;font-family:Inter,sans-serif}
+.f{width:1080px;height:1350px;position:relative;overflow:hidden}
+.a{position:absolute}
+.c{left:50%;transform:translateX(-50%);text-align:center;white-space:nowrap}
+.safe{position:absolute;left:60px;right:150px;top:90px;bottom:200px;border:4px dashed #FF2D55;border-radius:10px;display:none}
+.safe::after{content:"safe zone TikTok";position:absolute;right:8px;bottom:-44px;font:700 26px Inter;color:#FF2D55}
+.rz{position:absolute;right:0;top:560px;width:150px;bottom:200px;background:rgba(255,45,85,.18);display:none}
+.bz{position:absolute;left:0;right:0;bottom:0;height:200px;background:rgba(255,45,85,.18);display:none}
+.show .safe,.show .rz,.show .bz{display:block}
+.ph{position:absolute;width:300px;height:616px;border-radius:54px;padding:12px}
+.ph .s{position:absolute;inset:12px;border-radius:42px;overflow:hidden}
+.ph .n{position:absolute;left:50%;top:24px;width:90px;height:26px;margin-left:-45px;border-radius:13px;background:#05070B}
+.apps{position:absolute;left:28px;right:28px;top:90px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px 18px}
+.apps i{display:block;aspect-ratio:1;border-radius:14px}
+
+/* A — Krim Lakaran */
+.A{background:#F4EDE1;background-image:radial-gradient(900px 700px at 50% 40%,#FBF7EF 0%,#F4EDE1 60%,#EADFCB 100%)}
+.A .h1{font:600 60px Inter;color:#3A3226;letter-spacing:-.02em}
+.A .h2{font:800 128px Inter;color:#1F3B2D;letter-spacing:-.03em}
+.A .h2 em{font-style:normal;color:#D9862B}
+.A .note{font:700 40px Caveat;color:#C8432F}
+.A .chip{background:#fff;border-radius:999px;padding:14px 26px;font:600 28px Inter;color:#3A3226;box-shadow:0 10px 24px rgba(58,50,38,.15)}
+.A .ph{background:#2A2A2A;box-shadow:0 40px 60px rgba(58,50,38,.3)}
+.A .ph .s{background:#1F3B2D}
+.A .apps i{background:rgba(255,255,255,.18)}
+/* B — Pop Kuning */
+.B{background:#FFE14D}
+.B .h1{font:400 60px 'Archivo Black';color:#111;text-transform:uppercase;letter-spacing:-.01em}
+.B .h2{font:400 128px 'Archivo Black';color:#111;text-transform:uppercase;letter-spacing:-.02em;-webkit-text-stroke:0}
+.B .h2 em{font-style:normal;color:#FF5A36;text-shadow:7px 7px 0 #111}
+.B .chip{background:#fff;border:5px solid #111;border-radius:18px;padding:12px 24px;font:800 30px Inter;color:#111;box-shadow:8px 8px 0 #111}
+.B .ph{background:#111;border:5px solid #111;box-shadow:14px 14px 0 #111}
+.B .ph .s{background:#2E6BFF}
+.B .apps i{background:#FFE14D;border:3px solid #111}
+/* C — Kaca Malam */
+.C{background:radial-gradient(700px 600px at 20% 20%,#FF7A3D55,transparent 60%),radial-gradient(800px 700px at 85% 80%,#FF3D7F55,transparent 60%),linear-gradient(170deg,#1A0633,#0B0218)}
+.C .h1{font:500 58px Inter;color:rgba(255,255,255,.8);letter-spacing:-.02em}
+.C .h2{font:800 128px Inter;letter-spacing:-.03em;background:linear-gradient(90deg,#FFB36B,#FF5E8A);-webkit-background-clip:text;color:transparent}
+.C .h2 em{font-style:normal}
+.C .chip{background:rgba(255,255,255,.12);border:2px solid rgba(255,255,255,.28);backdrop-filter:blur(10px);border-radius:24px;padding:14px 26px;font:600 28px Inter;color:#fff}
+.C .ph{background:linear-gradient(145deg,#4A4560,#1E1A2B);box-shadow:0 0 80px rgba(255,94,138,.35)}
+.C .ph .s{background:linear-gradient(170deg,#2A1E45,#120A22)}
+.C .apps i{background:rgba(255,255,255,.14)}
+/* D — Pastel Lembut */
+.D{background:linear-gradient(160deg,#EDE7FF 0%,#E3F6EE 100%)}
+.D .h1{font:500 58px Inter;color:#4B4372;letter-spacing:-.02em}
+.D .h2{font:400 136px 'DM Serif Display';color:#2B2350;letter-spacing:-.01em}
+.D .h2 em{color:#7B61FF}
+.D .chip{background:#fff;border-radius:999px;padding:14px 28px;font:600 28px Inter;color:#4B4372;box-shadow:0 14px 30px rgba(75,67,114,.14)}
+.D .ph{background:linear-gradient(145deg,#FFFFFF,#D9D2F5);box-shadow:0 40px 70px rgba(75,67,114,.25)}
+.D .ph .s{background:linear-gradient(170deg,#B9A9FF,#7B61FF)}
+.D .apps i{background:rgba(255,255,255,.4)}
+.blob{position:absolute;border-radius:50%}
+</style></head><body>
+<div id="out"></div>
+<script>
+const APPS='<div class="apps">'+'<i></i>'.repeat(12)+'</div>';
+const spin=(c)=>`<svg class="a" style="left:50%;top:350px;width:76px;margin-left:-38px" viewBox="0 0 84 84"><circle cx="42" cy="42" r="32" fill="none" stroke="${c}" stroke-opacity=".25" stroke-width="9"/><path d="M42 10 A32 32 0 0 1 74 42" fill="none" stroke="${c}" stroke-width="9" stroke-linecap="round"/></svg>`;
+const S={
+ A:{spin:'#F4EDE1',newS:'linear-gradient(170deg,#F2C48A,#D9862B)',chipBg:'#D9862B',chipC:'#fff',bar:'#1F3B2D',extra1:`<div class="a note" style="left:90px;top:520px;transform:rotate(-6deg)">app beku</div><svg class="a" style="left:180px;top:570px" width="160" height="90"><path d="M10 10 Q80 20 140 70" fill="none" stroke="#C8432F" stroke-width="4" stroke-linecap="round"/><path d="M122 66 L142 72 L136 52" fill="none" stroke="#C8432F" stroke-width="4" stroke-linecap="round"/></svg><div class="a chip" style="left:640px;top:520px;transform:rotate(5deg)">storan penuh</div><div class="a chip" style="left:120px;top:1010px;transform:rotate(-4deg);filter:blur(1.5px);opacity:.8">memuatkan…</div><div class="a" style="left:688px;top:470px;width:44px;height:44px;border-radius:50%;background:#C8432F;color:#fff;font:700 24px Inter;display:grid;place-items:center">9</div>`},
+ B:{spin:'#FFE14D',newS:'#FF5A36',chipBg:'#2E6BFF',chipC:'#fff',bar:'#111',extra1:`<div class="a chip" style="left:90px;top:560px;transform:rotate(-7deg)">LAG!</div><div class="a chip" style="left:650px;top:900px;transform:rotate(6deg);background:#FF5A36;color:#fff">STORAN PENUH</div><svg class="a" style="left:700px;top:430px" width="120" height="120"><path d="M60 5 L72 45 L115 48 L80 72 L92 115 L60 90 L28 115 L40 72 L5 48 L48 45Z" fill="#fff" stroke="#111" stroke-width="5"/></svg>`},
+ C:{spin:'#FF8A5E',newS:'linear-gradient(170deg,#FFB36B,#FF5E8A)',chipBg:'linear-gradient(90deg,#FF8A3D,#FF3D7F)',chipC:'#fff',bar:'rgba(255,255,255,.85)',extra1:`<div class="a chip" style="left:100px;top:560px">⚠ Storan penuh</div><div class="a chip" style="left:640px;top:960px;filter:blur(1px)">memuatkan…</div>`},
+ D:{spin:'#fff',newS:'linear-gradient(170deg,#9FF0CF,#3CC79A)',chipBg:'#7B61FF',chipC:'#fff',bar:'#2B2350',extra1:`<div class="blob" style="left:70px;top:420px;width:180px;height:180px;background:#FFD6E7"></div><div class="blob" style="left:800px;top:930px;width:140px;height:140px;background:#C9F2E0"></div><div class="a chip" style="left:100px;top:980px">memuatkan…</div><div class="a chip" style="left:640px;top:540px">storan penuh</div>`}
+};
+function f1(k){const s=S[k];return `<div class="f ${k}">
+ <div class="a c h1" style="top:130px">Phone lama dah</div>
+ <div class="a c h2" style="top:205px"><em>perlahan,</em></div>
+ <div class="ph" style="left:390px;top:470px;transform:rotate(-4deg)"><div class="s">${APPS}${spin(s.spin)}</div><div class="n"></div></div>${s.extra1}
+ <div class="safe"></div><div class="rz"></div><div class="bz"></div></div>`}
+function f2(k){const s=S[k];const dark=k=='C';return `<div class="f ${k}">
+ <div class="a c h2" style="top:120px;font-size:96px"><span>Bawa.</span> <em>Tolak.</em></div>
+ <div class="a c h2" style="top:235px;font-size:96px">Upgrade.</div>
+ <div class="ph" style="left:110px;top:560px;transform:rotate(-10deg) scale(.72);transform-origin:50% 0"><div class="s">${APPS}</div><div class="n"></div></div>
+ <div class="a chip" style="left:285px;top:770px;background:${s.chipBg};color:${s.chipC};font-size:34px;padding:18px 32px;z-index:2">− Nilai trade-in</div>
+ <div class="ph" style="left:590px;top:430px;transform:rotate(5deg) scale(.8);transform-origin:50% 0"><div class="s" style="background:${s.newS}">${APPS}</div><div class="n"></div></div>
+ <div class="a chip" style="left:560px;top:960px;border-radius:${k=='B'?18:28}px;padding:22px 28px;text-align:left">
+  <div style="font-size:24px;opacity:.7;margin-bottom:12px">Harga phone baru</div>
+  <div style="width:300px;height:22px;border-radius:11px;background:${dark?'rgba(255,255,255,.18)':'rgba(0,0,0,.08)'};position:relative;overflow:hidden"><div style="position:absolute;left:0;top:0;bottom:0;width:62%;border-radius:11px;background:${s.bar}"></div></div></div>
+ <div class="safe"></div><div class="rz"></div><div class="bz"></div></div>`}
+const out=document.getElementById('out');
+for(const k of 'ABCD'){out.insertAdjacentHTML('beforeend',`<div id="${k}1">${f1(k)}</div><div id="${k}2">${f2(k)}</div>`)}
+out.insertAdjacentHTML('beforeend',`<div id="SZ" class="show">${f1('A')}</div>`);
+document.querySelector('#SZ .f').classList.add('show');
+</script></body></html>
