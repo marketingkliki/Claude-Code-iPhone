@@ -1,0 +1,462 @@
+[
+ {
+  "i": 0,
+  "a": 0.0,
+  "b": 1.489,
+  "line": "Phone lama dah perlahan,",
+  "w": [
+   [
+    "Phone",
+    0.0
+   ],
+   [
+    "lama",
+    0.13
+   ],
+   [
+    "dah",
+    0.64
+   ],
+   [
+    "perlahan,",
+    0.9
+   ]
+  ]
+ },
+ {
+  "i": 1,
+  "a": 1.895,
+  "b": 3.323,
+  "line": "tapi duit nak upgrade",
+  "w": [
+   [
+    "tapi",
+    1.9
+   ],
+   [
+    "duit",
+    2.4
+   ],
+   [
+    "nak",
+    2.67
+   ],
+   [
+    "upgrade",
+    2.81
+   ]
+  ]
+ },
+ {
+  "i": 2,
+  "a": 3.73,
+  "b": 4.167,
+  "line": "tak cukup?",
+  "w": [
+   [
+    "tak",
+    3.73
+   ],
+   [
+    "cukup?",
+    3.88
+   ]
+  ]
+ },
+ {
+  "i": 3,
+  "a": 4.8,
+  "b": 7.446,
+  "line": "Jangan tunggu sampai phone tu langsung tak berguna.",
+  "w": [
+   [
+    "Jangan",
+    4.8
+   ],
+   [
+    "tunggu",
+    5.16
+   ],
+   [
+    "sampai",
+    5.56
+   ],
+   [
+    "phone",
+    6.0
+   ],
+   [
+    "tu",
+    6.16
+   ],
+   [
+    "langsung",
+    6.31
+   ],
+   [
+    "tak",
+    6.69
+   ],
+   [
+    "berguna.",
+    6.88
+   ]
+  ]
+ },
+ {
+  "i": 4,
+  "a": 7.925,
+  "b": 9.835,
+  "line": "Masa tu nilainya makin jatuh.",
+  "w": [
+   [
+    "Masa",
+    7.92
+   ],
+   [
+    "tu",
+    8.23
+   ],
+   [
+    "nilainya",
+    8.5
+   ],
+   [
+    "makin",
+    9.08
+   ],
+   [
+    "jatuh.",
+    9.38
+   ]
+  ]
+ },
+ {
+  "i": 5,
+  "a": 10.205,
+  "b": 11.544,
+  "line": "Bawa phone lama ke KLIKI,",
+  "w": [
+   [
+    "Bawa",
+    10.21
+   ],
+   [
+    "phone",
+    10.55
+   ],
+   [
+    "lama",
+    10.71
+   ],
+   [
+    "ke",
+    11.07
+   ],
+   [
+    "KLIKI,",
+    11.26
+   ]
+  ]
+ },
+ {
+  "i": 6,
+  "a": 11.765,
+  "b": 12.624,
+  "line": "tolak nilainya,",
+  "w": [
+   [
+    "tolak",
+    11.77
+   ],
+   [
+    "nilainya,",
+    12.08
+   ]
+  ]
+ },
+ {
+  "i": 7,
+  "a": 12.784,
+  "b": 13.924,
+  "line": "upgrade ke phone lain.",
+  "w": [
+   [
+    "upgrade",
+    12.78
+   ],
+   [
+    "ke",
+    13.22
+   ],
+   [
+    "phone",
+    13.49
+   ],
+   [
+    "lain.",
+    13.7
+   ]
+  ]
+ },
+ {
+  "i": 8,
+  "a": 14.085,
+  "b": 15.397,
+  "line": "Dibayar hari yang sama.",
+  "w": [
+   [
+    "Dibayar",
+    14.09
+   ],
+   [
+    "hari",
+    14.58
+   ],
+   [
+    "yang",
+    14.91
+   ],
+   [
+    "sama.",
+    15.05
+   ]
+  ]
+ },
+ {
+  "i": 9,
+  "a": 15.693,
+  "b": 17.087,
+  "line": "Retak pun boleh dinilai,",
+  "w": [
+   [
+    "Retak",
+    15.69
+   ],
+   [
+    "pun",
+    16.1
+   ],
+   [
+    "boleh",
+    16.18
+   ],
+   [
+    "dinilai,",
+    16.56
+   ]
+  ]
+ },
+ {
+  "i": 10,
+  "a": 17.429,
+  "b": 18.964,
+  "line": "asalkan phone masih boleh hidup.",
+  "w": [
+   [
+    "asalkan",
+    17.43
+   ],
+   [
+    "phone",
+    17.79
+   ],
+   [
+    "masih",
+    18.08
+   ],
+   [
+    "boleh",
+    18.42
+   ],
+   [
+    "hidup.",
+    18.71
+   ]
+  ]
+ },
+ {
+  "i": 11,
+  "a": 19.379,
+  "b": 20.05,
+  "line": "Tak cukup lagi?",
+  "w": [
+   [
+    "Tak",
+    19.38
+   ],
+   [
+    "cukup",
+    19.5
+   ],
+   [
+    "lagi?",
+    19.71
+   ]
+  ]
+ },
+ {
+  "i": 12,
+  "a": 20.44,
+  "b": 21.967,
+  "line": "Boleh ansuran dengan SPayLater.",
+  "w": [
+   [
+    "Boleh",
+    20.44
+   ],
+   [
+    "ansuran",
+    20.72
+   ],
+   [
+    "dengan",
+    21.15
+   ],
+   [
+    "SPayLater.",
+    21.44
+   ]
+  ]
+ },
+ {
+  "i": 13,
+  "a": 22.237,
+  "b": 23.228,
+  "line": "Beli phone di KLIKI,",
+  "w": [
+   [
+    "Beli",
+    22.24
+   ],
+   [
+    "phone",
+    22.54
+   ],
+   [
+    "di",
+    22.8
+   ],
+   [
+    "KLIKI,",
+    22.88
+   ]
+  ]
+ },
+ {
+  "i": 14,
+  "a": 23.419,
+  "b": 24.841,
+  "line": "pindah data percuma.",
+  "w": [
+   [
+    "pindah",
+    23.42
+   ],
+   [
+    "data",
+    23.77
+   ],
+   [
+    "percuma.",
+    24.27
+   ]
+  ]
+ },
+ {
+  "i": 15,
+  "a": 25.16,
+  "b": 28.458,
+  "line": "Gambar, contact, WhatsApp, semua ikut ke phone baru.",
+  "w": [
+   [
+    "Gambar,",
+    25.16
+   ],
+   [
+    "contact,",
+    25.63
+   ],
+   [
+    "WhatsApp,",
+    26.07
+   ],
+   [
+    "semua",
+    26.62
+   ],
+   [
+    "ikut",
+    26.99
+   ],
+   [
+    "ke",
+    27.42
+   ],
+   [
+    "phone",
+    27.69
+   ],
+   [
+    "baru.",
+    27.98
+   ]
+  ]
+ },
+ {
+  "i": 16,
+  "a": 28.685,
+  "b": 30.092,
+  "line": "WhatsApp gambar phone lama anda,",
+  "w": [
+   [
+    "WhatsApp",
+    28.68
+   ],
+   [
+    "gambar",
+    28.94
+   ],
+   [
+    "phone",
+    29.39
+   ],
+   [
+    "lama",
+    29.47
+   ],
+   [
+    "anda,",
+    29.78
+   ]
+  ]
+ },
+ {
+  "i": 17,
+  "a": 30.258,
+  "b": 32.257,
+  "line": "dapatkan anggaran harga trade-in dulu.",
+  "w": [
+   [
+    "dapatkan",
+    30.26
+   ],
+   [
+    "anggaran",
+    30.74
+   ],
+   [
+    "harga",
+    31.33
+   ],
+   [
+    "trade-in",
+    31.52
+   ],
+   [
+    "dulu.",
+    31.92
+   ]
+  ]
+ }
+]

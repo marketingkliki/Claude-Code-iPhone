@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="ms"><head><meta charset="utf-8">
+<meta name="viewport" content="width=1080">
+<title>KLIKI Trade-in — motion</title>
+<style>
+@font-face{font-family:Inter;src:url(__FONT__) format('woff2');font-weight:100 900;font-display:block}
+:root{--blue:#046AD8;--deep:#0350A6;--navy:#0B1F3A;--night:#061833;--sky:#8CC6FF;--warn:#FF6B5E;--spl:#EE4D2D;--light:#F3F7FC}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#000;overflow:hidden}
+#wrap{width:1080px;height:1920px;position:relative;overflow:hidden;transform-origin:0 0}
+#stage{position:absolute;inset:0;font-family:Inter,sans-serif;color:#fff}
+.bg{position:absolute;inset:0}
+#bgN{background:radial-gradient(1200px 1300px at 50% 35%,#13325C 0%,#0B1F3A 55%,#061833 100%)}
+#bgL{background:radial-gradient(1300px 1300px at 50% 40%,#FFFFFF 0%,#F3F7FC 60%,#E4EEF9 100%)}
+#bgW{background:#046AD8}
+#bgE{background:radial-gradient(1200px 1300px at 50% 45%,#1A7FEA 0%,#046AD8 55%,#0350A6 100%)}
+.blob{position:absolute;border-radius:50%;filter:blur(90px)}
+.el{position:absolute;left:0;top:0;white-space:nowrap;will-change:transform,opacity}
+.ln{text-align:center;letter-spacing:-.02em;line-height:1}
+.ln .w{display:inline-block}
+/* phones */
+.ph{width:380px;height:780px;border-radius:66px;padding:14px;position:absolute;left:0;top:0}
+.ph .scr{position:absolute;inset:14px;border-radius:52px;overflow:hidden}
+.ph .isl{position:absolute;left:50%;top:30px;width:110px;height:32px;margin-left:-55px;border-radius:16px;background:#05070B;z-index:5}
+.ph.old{background:linear-gradient(145deg,#3A414D,#1E232B 60%,#2B313B);box-shadow:0 40px 80px rgba(0,0,0,.45),inset 0 0 0 2px #4A525F}
+.ph.old .scr{background:linear-gradient(170deg,#1B2433,#0E1520)}
+.ph.new{background:linear-gradient(145deg,#DCE9F7,#9FB8D3 45%,#E9F1FA 70%,#A9C0DA);box-shadow:0 50px 90px rgba(4,106,216,.35),inset 0 0 0 2px #fff}
+.ph.new .scr{background:radial-gradient(420px 520px at 30% 20%,#8CC6FF 0%,#046AD8 55%,#0350A6 100%)}
+.apps{position:absolute;left:34px;right:34px;top:110px;display:grid;grid-template-columns:repeat(4,1fr);gap:26px 22px}
+.apps i{display:block;aspect-ratio:1;border-radius:18px;background:#3B4658}
+.new .apps i{background:rgba(255,255,255,.28)}
+.dim{position:absolute;inset:0;background:#05080D}
+.spin{position:absolute;left:50%;top:470px;width:84px;height:84px;margin:-42px 0 0 -42px}
+.crk{position:absolute;inset:0}
+.glare{position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,0) 38%)}
+.shadow{position:absolute;width:300px;height:44px;border-radius:50%;background:rgba(6,24,51,.28);filter:blur(16px)}
+/* UI */
+.bar{width:800px;height:100px;border-radius:30px;border:5px solid rgba(255,255,255,.85);position:absolute;padding:8px}
+.seg{position:absolute;top:8px;bottom:8px;border-radius:20px}
+.lbl{font-size:34px;font-weight:600;text-align:center;letter-spacing:-.01em}
+.pill{border-radius:999px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:14px}
+.card{background:#fff;border-radius:44px;box-shadow:0 30px 70px rgba(11,31,58,.16)}
+.tile{width:150px;height:150px;border-radius:36px;background:#fff;border:5px solid var(--blue);box-shadow:0 20px 40px rgba(11,31,58,.14);display:grid;place-items:center}
+.ico{width:130px;height:130px;border-radius:34px;background:#fff;box-shadow:0 18px 40px rgba(11,31,58,.18);display:grid;place-items:center}
+.bub{position:absolute;border-radius:28px;box-shadow:0 6px 16px rgba(11,31,58,.10)}
+#cover{position:absolute;inset:0;z-index:99;background:rgba(6,24,51,.85);display:none;place-items:center;color:#fff;font:700 56px Inter;cursor:pointer}
+</style></head><body>
+<div id="wrap"><div id="stage">
+ <div class="bg" id="bgN"><div class="blob" id="b1" style="width:900px;height:900px;background:#1B4F8F;opacity:.55"></div><div class="blob" id="b2" style="width:700px;height:700px;background:#0F3A6E;opacity:.6"></div></div>
+ <div class="bg" id="bgW"></div>
+ <div class="bg" id="bgL"><div class="blob" id="b3" style="width:900px;height:900px;background:#CFE5FF;opacity:.8"></div><div class="blob" id="b4" style="width:700px;height:700px;background:#E3EEFB;opacity:.9"></div></div>
+ <div class="bg" id="bgE"><div class="blob" id="b5" style="width:900px;height:900px;background:#3D9BFF;opacity:.5"></div></div>
+</div><div id="cover">▶ Tekan untuk main</div></div>
+<audio id="vo" src="__VO__" preload="auto"></audio>
+
+<script>
+const W=1080,H=1920,stage=document.getElementById('stage');
+const WT=__WORDS__;
+const T=(i,j)=>WT[i].w[j][1];
+const cl=(v,a=0,b=1)=>v<a?a:v>b?b:v, pr=(t,a,d)=>cl((t-a)/d), L=(a,b,p)=>a+(b-a)*p;
+const eo=p=>1-Math.pow(1-p,3), ei=p=>p*p*p, eio=p=>p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;
+const eb=p=>{const c1=1.9,c3=c1+1;return 1+c3*Math.pow(p-1,3)+c1*Math.pow(p-1,2)};
+const ex=p=>p>=1?1:1-Math.pow(2,-10*p);
+function mk(html,cls,parent=stage,css){const d=document.createElement('div');d.className='el '+(cls||'');d.innerHTML=html||'';if(css)d.style.cssText+=css;parent.appendChild(d);return d}
+function put(n,o){const s=o.s??1,sx=o.sx??1;n.style.left=(o.x??540)+'px';n.style.top=(o.y??960)+'px';
+ n.style.transform=`translate(-50%,-50%) rotate(${o.r||0}deg) scale(${s*sx},${s})`;n.style.opacity=cl(o.o??1);n.style.filter=o.b>0.05?`blur(${o.b}px)`:'none';}
+function hide(n){n.style.opacity=0}
+/* kinetic lines: spec=[[text,time,cls]] */
+function line(spec,css){const n=mk('','ln',stage,css);const sp=spec.map(([w,tt,c])=>{const s=document.createElement('span');s.className='w';s.textContent=w;if(c)s.style.cssText=c;n.appendChild(s);n.appendChild(document.createTextNode(' '));return{s,tt,k:!!(c&&c.includes('/*k*/'))}});return{n,sp}}
+function play(Lo,t,y,inT,outT,opt={}){const a=pr(t,inT-0.05,0.01),o=outT==null?1:1-eio(pr(t,outT,0.3));
+ if(t<inT-0.1||o<=0){Lo.n.style.opacity=0;return}
+ Lo.n.style.opacity=o;Lo.n.style.left='540px';Lo.n.style.top=y+'px';
+ Lo.n.style.transform=`translate(-50%,-50%) translateY(${(1-o)*-40}px)`;
+ for(const w of Lo.sp){const p=pr(t,w.tt-0.06,opt.d||0.34),e=eo(p);let sc=1,dy=(1-e)*44;
+  if(w.k){sc=p<=0?.55:L(.55,1,eb(p));dy=(1-e)*20}
+  if(opt.drop&&w.k){const q=pr(t,w.tt-0.06,0.42);dy=q<1?L(-260,0,eb(q)):0;sc=1}
+  w.s.style.opacity=e;w.s.style.transform=`translateY(${dy}px) scale(${sc})`;w.s.style.filter=e<.98?`blur(${(1-e)*10}px)`:'none'}}
+const F=(px,wt,col,extra='')=>`font-size:${px}px;font-weight:${wt};color:${col};${extra}`;
+const K='/*k*/';
+/* ---------- phones ---------- */
+const APPS='<div class="apps">'+'<i></i>'.repeat(16)+'</div>';
+const SPIN='<svg class="spin" viewBox="0 0 84 84"><circle cx="42" cy="42" r="34" fill="none" stroke="#2C3A52" stroke-width="9"/><path d="M42 8 A34 34 0 0 1 76 42" fill="none" stroke="#8CC6FF" stroke-width="9" stroke-linecap="round"/></svg>';
+const CRACK='<svg class="crk" viewBox="0 0 352 752"><g fill="none" stroke="#E8F0FA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M70 150 L130 250 L105 320 L180 400 L160 470 L230 560"/><path pathLength="1" d="M130 250 L215 225 L290 260"/><path pathLength="1" d="M180 400 L250 390 L300 430"/><path pathLength="1" d="M105 320 L40 360"/><path pathLength="1" d="M160 470 L95 520 L80 600"/></g></svg>';
+function oldPhone(extra=''){return mk(`<div class="scr">${APPS}${SPIN}${extra}<div class="dim"></div><div class="glare"></div></div><div class="isl"></div>`,'ph old')}
+const PO=oldPhone(CRACK); const POspin=PO.querySelector('.spin'),POdim=PO.querySelector('.dim'),POcrk=[...PO.querySelectorAll('.crk path')];
+PO.querySelectorAll('.apps i').forEach((n,i)=>{if(i>11)n.style.opacity=0});
+const PN=mk(`<div class="scr">${APPS}<div class="glare"></div></div><div class="isl"></div>`,'ph new');
+const PNapps=PN.querySelector('.apps');PNapps.querySelectorAll('i').forEach((n,i)=>{if(i>7)n.style.opacity=0});
+const glow=mk('','',stage,'width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,rgba(140,198,255,.75) 0%,rgba(140,198,255,0) 65%)');
+stage.insertBefore(glow,PN);
+/* ---------- S2 money bar ---------- */
+const BAR=mk('<div class="seg" id="sf" style="left:8px;background:repeating-linear-gradient(-35deg,#8CC6FF 0 14px,#6FB4F7 14px 28px)"></div><div class="seg" id="sg" style="border:4px dashed #FF6B5E;background:rgba(255,107,94,.14)"></div>','bar');
+const SF=BAR.querySelector('#sf'),SG=BAR.querySelector('#sg');
+const L1=mk('Duit ada','lbl',stage,'color:#8CC6FF'),L2=mk('Tak cukup','lbl',stage,'color:#FF6B5E');
+/* ---------- S3 graph ---------- */
+const G=mk(`<svg width="1080" height="1920" viewBox="0 0 1080 1920"><g id="ax" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="5" stroke-linecap="round"><path pathLength="1" d="M150 760 V1440 H940"/></g>
+<path id="gp" d="M170 800 C330 820 420 930 520 1080 S760 1380 920 1410" fill="none" stroke="#FF6B5E" stroke-width="10" stroke-linecap="round"/></svg>`,'',stage,'left:0;top:0');
+const GP=G.querySelector('#gp'),GL=GP.getTotalLength(),AX=G.querySelector('#ax path');
+const GA=mk('Nilai','lbl',stage,'color:#8CC6FF;font-size:32px'),GB=mk('Masa →','lbl',stage,'color:#8CC6FF;font-size:32px');
+stage.appendChild(PO);
+/* ---------- S4 trade-in ---------- */
+const PC=mk(`<div style="font-size:30px;font-weight:600;color:rgba(11,31,58,.6);margin-bottom:16px">Harga phone baru</div><div style="width:340px;height:30px;border-radius:15px;background:#E4EEF9;position:relative;overflow:hidden"><div id="pcb" style="position:absolute;left:0;top:0;bottom:0;border-radius:15px;background:#0B1F3A"></div><div id="pcc" style="position:absolute;top:0;bottom:0;border-radius:15px;background:#046AD8"></div></div>`,'card',stage,'width:400px;padding:30px;text-align:left');
+const PCB=PC.querySelector('#pcb'),PCC=PC.querySelector('#pcc');
+const CH=mk('<span id="chm" style="font-size:44px">−</span> Nilai trade-in','pill',stage,'width:380px;height:104px;background:#046AD8;color:#fff;font-size:38px;box-shadow:0 24px 50px rgba(4,106,216,.4)');
+const CHM=CH.querySelector('#chm');
+const W4=[['Bawa.',T(5,0)],['Tolak.',T(6,0)],['Upgrade.',T(7,0)]].map(([w,tt])=>({n:mk(w,'ln',stage,F(100,800,'#0B1F3A')),tt}));
+const S4=[line([['phone',T(5,1)],['lama',T(5,2)],['ke',T(5,3)],['KLIKI,',T(5,4),'font-weight:700;color:#046AD8']],F(44,500,'rgba(11,31,58,.62)')),
+ line([['tolak',T(6,0)],['nilainya,',T(6,1),'font-weight:700;color:#046AD8']],F(44,500,'rgba(11,31,58,.62)')),
+ line([['ke',T(7,1)],['phone',T(7,2)],['lain.',T(7,3),'font-weight:700;color:#046AD8']],F(44,500,'rgba(11,31,58,.62)'))];
+/* ---------- S5 paid same day ---------- */
+const CAL=mk(`<div style="height:150px;background:#046AD8;border-radius:44px 44px 0 0;display:grid;place-items:center;font-size:54px;font-weight:800;color:#fff;letter-spacing:.04em">HARI INI</div>
+<div style="position:absolute;left:120px;top:-22px;width:40px;height:56px;border-radius:20px;background:#0B1F3A"></div><div style="position:absolute;right:120px;top:-22px;width:40px;height:56px;border-radius:20px;background:#0B1F3A"></div>
+<div style="padding:40px 56px;display:grid;grid-template-columns:repeat(5,1fr);gap:20px">${'<i style="display:block;height:44px;border-radius:12px;background:#E9F1FA"></i>'.repeat(10)}</div>`,'card',stage,'width:600px;height:520px');
+const STAMP=mk('DIBAYAR','',stage,'font-size:104px;font-weight:800;color:#046AD8;border:10px solid #046AD8;border-radius:34px;padding:12px 40px;background:rgba(255,255,255,.92);letter-spacing:.02em');
+const CHK=mk('<svg width="150" height="150" viewBox="0 0 150 150"><circle cx="75" cy="75" r="70" fill="#046AD8"/><path id="ck" pathLength="1" d="M42 78 L66 101 L110 52" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+const CK=CHK.querySelector('#ck');
+const S5a=line([['Dibayar',T(8,0)]],F(64,700,'#0B1F3A')),S5b=line([['hari',T(8,1),K],['yang',T(8,2),K],['sama.',T(8,3),K]],F(84,800,'#046AD8'));
+/* ---------- S6 cracked ok ---------- */
+const PR=oldPhone(CRACK+'<svg class="pw" viewBox="0 0 120 120" style="position:absolute;left:50%;top:360px;width:120px;margin-left:-60px"><circle cx="60" cy="64" r="40" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-dasharray="200 52" transform="rotate(-50 60 64)"/><path d="M60 14 V60" stroke="currentColor" stroke-width="10" stroke-linecap="round"/></svg><div class="scan" style="position:absolute;left:0;right:0;height:120px;background:linear-gradient(180deg,rgba(140,198,255,0),rgba(140,198,255,.45) 85%,#CFE8FF 100%)"></div>');
+PR.querySelector('.spin').remove();
+const PRcrk=[...PR.querySelectorAll('.crk path')],PRpw=PR.querySelector('.pw'),PRscan=PR.querySelector('.scan'),PRdim=PR.querySelector('.dim');
+const OK=mk('<svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#fff"/><path d="M12 23 L19 30 L32 15" fill="none" stroke="#046AD8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>Masih boleh hidup','pill',stage,'height:100px;padding:0 44px;background:#046AD8;color:#fff;font-size:40px;box-shadow:0 20px 40px rgba(4,106,216,.35)');
+const S6a=line([['Retak',T(9,0),K],['pun',T(9,1),K]],F(120,800,'#046AD8')),S6b=line([['boleh',T(9,2)],['dinilai,',T(9,3)]],F(64,700,'#0B1F3A')),
+ S6c=line(WT[10].w.map(([w,tt])=>[w,tt]),F(40,500,'rgba(11,31,58,.65)'));
+/* ---------- S7 installments ---------- */
+const BAR2=mk('<div class="seg" id="a" style="left:8px;background:repeating-linear-gradient(-35deg,#8CC6FF 0 14px,#A9D4FF 14px 28px)"></div><div class="seg" id="b" style="background:#046AD8"></div><div class="seg" id="c" style="border:4px dashed #FF6B5E;background:rgba(255,107,94,.10)"></div>','bar',stage,'border-color:#0B1F3A');
+const B2=['a','b','c'].map(i=>BAR2.querySelector('#'+i));
+const B2L=[mk('Duit ada','lbl',stage,'color:#4A8FD6;font-size:30px'),mk('Trade-in','lbl',stage,'color:#046AD8;font-size:30px'),mk('Baki','lbl',stage,'color:#FF6B5E;font-size:30px')];
+const CALI='<svg width="70" height="70" viewBox="0 0 70 70"><rect x="8" y="14" width="54" height="48" rx="10" fill="none" stroke="currentColor" stroke-width="6"/><path d="M8 28 H62 M22 6 V18 M48 6 V18" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg>';
+const TL=[0,1,2].map(()=>mk(CALI,'tile',stage,'color:#046AD8'));
+const SPL=mk('<img src="__SPL__" style="width:460px;display:block;border-radius:26px;box-shadow:0 24px 50px rgba(238,77,45,.35)">');
+const S7a=line(WT[11].w.map(([w,tt])=>[w,tt]),F(64,700,'#0B1F3A')),S7b=line([['Boleh',T(12,0),K],['ansuran',T(12,1),K]],F(96,800,'#046AD8')),S7c=line([['dengan',T(12,2)]],F(44,500,'rgba(11,31,58,.65)'));
+/* ---------- S8 data transfer ---------- */
+const PO2=oldPhone('');PO2.querySelector('.spin').remove();
+const ARC=mk('<svg width="1080" height="1920" viewBox="0 0 1080 1920"><path id="arc" d="M290 1080 Q540 760 800 1060" fill="none" stroke="#046AD8" stroke-width="7" stroke-dasharray="4 22" stroke-linecap="round"/></svg>','',stage,'left:0;top:0');
+const ARCP=ARC.querySelector('#arc'),AL=ARCP.getTotalLength();
+const IC=[
+ '<svg width="78" height="78" viewBox="0 0 78 78"><rect x="6" y="12" width="66" height="54" rx="12" fill="#E4EEF9" stroke="#046AD8" stroke-width="6"/><circle cx="26" cy="31" r="7" fill="#046AD8"/><path d="M10 60 L32 40 L46 52 L56 44 L70 58" fill="none" stroke="#046AD8" stroke-width="6" stroke-linejoin="round"/></svg>',
+ '<svg width="78" height="78" viewBox="0 0 78 78"><circle cx="39" cy="28" r="14" fill="#046AD8"/><path d="M12 70 C14 50 64 50 66 70" fill="#046AD8"/></svg>',
+ '<svg width="78" height="78" viewBox="0 0 78 78"><path d="M14 10 H64 A10 10 0 0 1 74 20 V48 A10 10 0 0 1 64 58 H34 L18 70 V58 H14 A10 10 0 0 1 4 48 V20 A10 10 0 0 1 14 10Z" fill="#046AD8"/><circle cx="24" cy="34" r="5" fill="#fff"/><circle cx="39" cy="34" r="5" fill="#fff"/><circle cx="54" cy="34" r="5" fill="#fff"/></svg>'
+].map(s=>mk(s,'ico'));
+const ICL=[['Gambar',T(15,0)],['Contact',T(15,1)],['WhatsApp',T(15,2)]].map(([w,tt])=>({n:mk(w,'lbl',stage,'color:#0B1F3A;font-size:38px;font-weight:700'),tt}));
+const S8a=line(WT[13].w.map(([w,tt])=>[w,tt]),F(52,600,'rgba(11,31,58,.7)')),S8b=line([['pindah',T(14,0)],['data',T(14,1)]],F(72,700,'#0B1F3A')),
+ S8c=line([['percuma.',T(14,2),K]],F(130,800,'#046AD8')),S8d=line(WT[15].w.slice(3).map(([w,tt])=>[w,tt]),F(44,500,'rgba(11,31,58,.65)'));
+stage.appendChild(PN);IC.forEach(n=>stage.appendChild(n));
+/* ---------- S9 chat ---------- */
+const PCH=mk(`<div class="scr" style="background:#EEF3F9">
+ <div style="position:absolute;left:0;right:0;top:0;height:150px;background:#046AD8;display:flex;align-items:flex-end;gap:16px;padding:0 26px 22px">
+  <div style="width:62px;height:62px;border-radius:50%;background:#fff;color:#046AD8;display:grid;place-items:center;font-weight:800;font-size:30px">K</div>
+  <div style="color:#fff;font-size:30px;font-weight:700;line-height:1.1">KLIKI<div style="font-size:20px;font-weight:500;opacity:.8">dalam talian</div></div></div>
+ <div class="bub" id="m1" style="right:20px;top:190px;width:230px;padding:12px;background:#D3E7FF">
+  <div style="height:190px;border-radius:18px;background:linear-gradient(160deg,#C9D6E6,#9DB0C7);display:grid;place-items:center"><div style="width:84px;height:160px;border-radius:18px;background:linear-gradient(145deg,#3A414D,#1E232B);border:3px solid #4A525F"></div></div>
+  <div style="text-align:right;font-size:20px;color:#6D7F96;margin-top:6px">12:41 <span id="tk" style="font-weight:700">✓✓</span></div></div>
+ <div class="bub" id="ty" style="left:20px;top:460px;width:110px;height:62px;background:#fff;display:flex;gap:10px;align-items:center;justify-content:center"><i style="width:12px;height:12px;border-radius:50%;background:#9DB0C7"></i><i style="width:12px;height:12px;border-radius:50%;background:#9DB0C7"></i><i style="width:12px;height:12px;border-radius:50%;background:#9DB0C7"></i></div>
+ <div class="bub" id="m2" style="left:20px;top:460px;width:270px;padding:22px 24px;background:#fff">
+  <div style="font-size:24px;font-weight:700;color:#0B1F3A;line-height:1.25">Anggaran harga trade-in</div>
+  <div style="margin-top:16px;height:22px;width:190px;border-radius:11px;background:linear-gradient(90deg,#E4EEF9,#C9DEF6,#E4EEF9)" id="sh"></div>
+  <div style="margin-top:10px;height:22px;width:130px;border-radius:11px;background:#E4EEF9"></div></div>
+</div><div class="isl"></div>`,'ph new',stage,'background:linear-gradient(145deg,#F2F6FB,#C4D3E4 45%,#F7FAFD 70%,#C9D6E6)');
+const M1=PCH.querySelector('#m1'),TY=PCH.querySelector('#ty'),M2=PCH.querySelector('#m2'),TK=PCH.querySelector('#tk'),SH=PCH.querySelector('#sh');
+const S9a=line([['WhatsApp',T(16,0),K],['gambar',T(16,1),K]],F(84,800,'#046AD8')),S9b=line(WT[16].w.slice(2).map(([w,tt])=>[w,tt]),F(56,700,'#0B1F3A')),
+ S9c=line([['Dapatkan',T(17,0),K],['anggaran',T(17,1),K]],F(74,800,'#046AD8')),S9d=line(WT[17].w.slice(2).map(([w,tt])=>[w,tt]),F(56,700,'#0B1F3A'));
+/* ---------- S10 end ---------- */
+const LOGO=mk('KLIKI','',stage,'font-size:210px;font-weight:800;color:#fff;letter-spacing:.02em;text-shadow:0 20px 60px rgba(6,24,51,.25)');
+const TAG=line([['Solusi',33.05],['Telefon',33.2],['Pintar',33.35]],F(66,700,'#fff'));
+const UL=mk('<svg width="640" height="40" viewBox="0 0 640 40"><path id="ul" pathLength="1" d="M10 26 Q320 6 630 22" fill="none" stroke="#8CC6FF" stroke-width="10" stroke-linecap="round"/></svg>');
+const ULP=UL.querySelector('#ul');
+const bgN=document.getElementById('bgN'),bgW=document.getElementById('bgW'),bgL=document.getElementById('bgL'),bgE=document.getElementById('bgE');
+const BL=['b1','b2','b3','b4','b5'].map(i=>document.getElementById(i));
+function pb(n,x,y){n.style.left=x+'px';n.style.top=y+'px';n.style.transform='translate(-50%,-50%)'}
+function draw(paths,p){paths.forEach((pa,i)=>{const q=cl(p*paths.length-i*.6);pa.style.strokeDasharray='1 1';pa.style.strokeDashoffset=1-q;pa.style.opacity=q>0?1:0})}
+const DUR=35.6;
+/* ================= RENDER ================= */
+function render(t){
+ // background layers + wipes
+ const wx=920,wy=1400; const R1=L(0,2300,eio(pr(t,9.85,.5))),R2=L(0,2300,eio(pr(t,10.0,.5)));
+ bgW.style.clipPath=`circle(${R1}px at ${wx}px ${wy}px)`;bgL.style.clipPath=`circle(${R2}px at ${wx}px ${wy}px)`;
+ const R3=L(0,2300,eio(pr(t,32.2,.6)));bgE.style.clipPath=`circle(${R3}px at 400px 1200px)`;
+ pb(BL[0],300+Math.sin(t*.4)*120,500+Math.cos(t*.3)*90);pb(BL[1],820+Math.cos(t*.35)*100,1500+Math.sin(t*.45)*110);
+ pb(BL[2],250+Math.sin(t*.3)*120,600+Math.cos(t*.4)*100);pb(BL[3],850+Math.cos(t*.33)*120,1450+Math.sin(t*.38)*90);
+ pb(BL[4],540+Math.sin(t*.5)*160,800+Math.cos(t*.4)*120);
+ // shake on impacts
+ let sh=0;for(const it of [9.38,14.09,24.27]){const q=pr(t,it+.06,.22);if(q>0&&q<1)sh=Math.sin(q*40)*(1-q)*9}
+ stage.style.transform=`translate(${sh}px,${sh*.6}px)`;
+
+ /* S1 + carry: old phone */
+ const S1h=line1;play(S1h.a,t,470,0,1.75);play(S1h.b,t,600,T(0,2),1.75);
+ let po={x:540,y:1120,s:.9,r:-4,o:1};
+ if(t<.6){const p=eo(pr(t,0,.6));po.y=L(1320,1120,p);po.o=p}
+ if(t>.9&&t<1.7)po.x+=(Math.floor(t*11)%2?4:-4);
+ if(t>=1.75){const p=eio(pr(t,1.75,.5));po={x:L(540,300,p),y:L(1120,930,p),s:L(.9,.55,p),r:L(-4,-8,p),o:1};po.y+=Math.sin(t*2)*6}
+ const gp0=GP.getPointAtLength(0);
+ if(t>=4.55){const p=eio(pr(t,4.55,.6));po={x:L(300,gp0.x,p),y:L(930,gp0.y-60,p),s:L(.55,.24,p),r:L(-8,12,p),o:1}}
+ let ride=0;
+ if(t>=5.2){ride=eio(pr(t,5.2,4.4));const P=GP.getPointAtLength(ride*GL),P2=GP.getPointAtLength(Math.min(GL,ride*GL+4));
+  const ang=Math.atan2(P2.y-P.y,P2.x-P.x)*57.3;po={x:P.x,y:P.y-60,s:.24,r:L(12,ang+10,.6),o:1}}
+ if(t>=9.75){const p=eio(pr(t,9.75,.6)),P=GP.getPointAtLength(GL);po={x:L(P.x,300,p),y:L(P.y-60,1150,p),s:L(.24,.55,p),r:L(48,-10,p),o:1}}
+ if(t>=10.35)po.y+=Math.sin((t-10.35)*2.2)*6;
+ if(t>=T(6,0)){const p=ei(pr(t,T(6,0),.28));po.sx=1-p;if(p>=1)po.o=0}
+ POspin.style.transform=`rotate(${Math.floor(t*6)*45}deg)`;POspin.style.opacity=t<4.5?1:0;
+ POdim.style.opacity=L(0,.6,ride);draw(POcrk,pr(t,T(3,7),.45));
+ put(PO,po);
+
+ /* S2 */
+ let pn={o:0};
+ if(t>=2.1&&t<5){const p=eo(pr(t,2.1,.6)),q=eio(pr(t,4.5,.35));pn={x:L(1150,770,p)+q*200,y:900+Math.sin(t*2.1)*7,s:.62,r:4,o:p*(1-q),b:(1-p)*12}}
+ if(t>=10.5){const p=eo(pr(t,10.5,.55));pn={x:770,y:L(1300,1080,p),s:.55,r:4,o:p}}
+ if(t>=T(7,0)){const p=eio(pr(t,T(7,0),.55));pn={x:L(770,540,p),y:L(1080,1150,p),s:L(.55,.8,p),r:L(4,0,p),o:1}}
+ if(t>=13.95){const p=eio(pr(t,13.95,.35));pn={x:540,y:L(1150,1500,p),s:L(.8,.5,p),o:1-p}}
+ if(t>=22.45&&t<29){const p=eo(pr(t,22.45,.6)),q=eio(pr(t,28.4,.35));pn={x:L(1200,800,p),y:1240+Math.sin(t*2)*6,s:.52,r:L(14,5,p),o:p*(1-q)}}
+ put(PN,pn);
+ put(glow,{x:540,y:1150,s:L(.4,1.1,eo(pr(t,T(7,0),.6))),o:t>T(7,0)&&t<14.3?(1-pr(t,13.95,.3))*.9:0});
+ PNapps.querySelectorAll('i').forEach((n,i)=>{n.style.opacity=i<8?1:0});
+ const bo=eo(pr(t,2.3,.4))*(1-eio(pr(t,4.45,.35)));
+ put(BAR,{x:540,y:1200,o:bo,s:L(.92,1,bo)});
+ SF.style.width=`${L(0,48,eo(pr(t,T(1,1),.9)))}%`;
+ const g=pr(t,T(2,0),.15);SG.style.left='calc(50% + 4px)';SG.style.right='8px';
+ SG.style.opacity=t<T(2,0)?0:(t<T(2,0)+.8?(Math.sin((t-T(2,0))*20)>0?1:.35):1)*g;
+ put(L1,{x:350,y:1300,o:bo*eo(pr(t,2.9,.3))});put(L2,{x:730,y:1300,o:bo*g});
+ play(S2a,t,1400,T(1,0),4.45);play(S2b,t,1520,T(2,0),4.45);
+
+ /* S3 */
+ const go=eo(pr(t,4.85,.4))*(1-eio(pr(t,9.75,.3)));
+ G.style.opacity=go;draw([AX],pr(t,4.85,.5));
+ GP.style.strokeDasharray=GL;GP.style.strokeDashoffset=GL*(1-ride);
+ put(GA,{x:200,y:730,o:go});put(GB,{x:880,y:1490,o:go});
+ play(S3a,t,430,T(3,0),7.75);play(S3b,t,540,T(3,2),7.75,{d:.28});
+ play(S3c,t,430,T(4,0),9.72);play(S3d,t,580,T(4,4),9.72,{drop:true});
+
+ /* S4 */
+ W4.forEach((w,i)=>{const p=pr(t,w.tt-.06,.36),act=(i==2||t<W4[i+1].tt-.06);const o=(t<w.tt-.1?0:1)*(1-eio(pr(t,13.95,.3)));
+  w.n.style.color=act?'#046AD8':'#0B1F3A';put(w.n,{x:540,y:390+i*112,s:p<=0?.5:L(.5,1,eb(p)),o:o*eo(p)})});
+ play(S4[0],t,750,T(5,1),T(6,0)-.3);play(S4[1],t,750,T(6,0),T(7,0)-.3);play(S4[2],t,750,T(7,1),13.95);
+ const pc=eo(pr(t,10.7,.5))*(1-eio(pr(t,T(7,0),.3)));put(PC,{x:770,y:L(1560,1480,pc),o:pc});
+ const land=eio(pr(t,12.62,.3));PCB.style.width=`${L(100,62,land)}%`;PCC.style.left=`${L(100,62,land)}%`;PCC.style.width=`${L(0,38,land)*(1-pr(t,12.9,.25))}%`;
+ const ct=T(6,0)+.28;let ch={o:0};
+ if(t>=ct){const a=eo(pr(t,ct,.22)),f=eio(pr(t,12.3,.36));ch={x:L(300,770,f),y:L(1150,1520,f),sx:a,s:L(1,.6,f),r:L(-6,0,a),o:1-pr(t,12.62,.2)}}
+ put(CH,ch);CHM.style.opacity=pr(t,12.15,.15);
+
+ /* S5 */
+ const ca=eo(pr(t,13.95,.4))*(1-eio(pr(t,15.5,.3)));put(CAL,{x:540,y:L(1080,980,ca)-pr(t,15.5,.3)*80,o:ca});
+ const sp=pr(t,T(8,0)-.02,.3);put(STAMP,{x:540,y:1050,r:-9,s:sp<=0?2.4:L(2.4,1,eo(sp)),o:(sp>0?cl(sp*4):0)*(1-eio(pr(t,15.5,.3)))});
+ const ck=pr(t,T(8,3),.3);put(CHK,{x:790,y:1200,s:ck<=0?.3:L(.3,1,eb(ck)),o:(ck>0?1:0)*(1-eio(pr(t,15.5,.3)))});CK.style.strokeDasharray='1 1';CK.style.strokeDashoffset=1-pr(t,T(8,3)+.1,.25);
+ play(S5a,t,1360,T(8,0),15.5);play(S5b,t,1470,T(8,1),15.5);
+
+ /* S6 */
+ const r6=eo(pr(t,15.55,.45))*(1-eio(pr(t,19.1,.3)));put(PR,{x:540,y:L(1300,1110,r6)+Math.sin(t*2)*5+pr(t,19.1,.3)*120,s:.78,r:L(6,-2,r6),o:r6});
+ draw(PRcrk,pr(t,T(9,0),.45));const sc=pr(t,16.3,.95);PRscan.style.top=`${L(-120,752,sc)}px`;PRscan.style.opacity=sc>0&&sc<1?1:0;
+ const pw=pr(t,T(10,0),.3);PRpw.style.color=pw>0?'#8CC6FF':'#3B4658';PRpw.style.filter=pw>0?`drop-shadow(0 0 ${18*eo(pw)}px #8CC6FF)`:'none';PRdim.style.opacity=L(.35,0,pw);
+ const okp=pr(t,T(10,2)-.05,.35);put(OK,{x:540,y:1525,s:okp<=0?.4:L(.4,1,eb(okp)),o:(okp>0?cl(okp*3):0)*(1-eio(pr(t,19.1,.3)))});
+ play(S6a,t,400,T(9,0),19.1);play(S6b,t,520,T(9,2),19.1);play(S6c,t,610,T(10,0),19.1,{d:.28});
+
+ /* S7 */
+ const b7=eo(pr(t,19.3,.4))*(1-eio(pr(t,21.95,.3)));put(BAR2,{x:540,y:1040,o:b7});
+ B2[0].style.left='8px';B2[0].style.width=`${L(0,38,eo(pr(t,19.35,.4)))}%`;
+ B2[1].style.left='calc(39% + 4px)';B2[1].style.width=`${L(0,30,eo(pr(t,19.55,.4)))}%`;
+ const split=pr(t,T(12,1),.5);
+ B2[2].style.left='calc(70% + 4px)';B2[2].style.right='8px';B2[2].style.opacity=(t<19.7?0:(t<20.4?(Math.sin((t-19.7)*20)>0?1:.4):1))*(1-split);
+ B2L.forEach((n,i)=>put(n,{x:[230,550,820][i],y:1130,o:b7*pr(t,19.5+i*.15,.25)*(i==2?1-split:1)}));
+ TL.forEach((n,i)=>{const p=eo(pr(t,T(12,1)+i*.09,.45)),q=pr(t,T(12,3),.3);
+  n.style.borderColor=q>0?'#EE4D2D':'#046AD8';n.style.color=q>0?'#EE4D2D':'#046AD8';
+  put(n,{x:L(820,330+i*210,p),y:L(1040,1290,p),s:L(.4,1,p),r:L(20,0,p),o:(p>0?1:0)*(1-eio(pr(t,21.95,.3)))})});
+ const sl=pr(t,T(12,3)-.04,.38);put(SPL,{x:540,y:760,s:sl<=0?.5:L(.5,1,eb(sl)),o:(sl>0?cl(sl*3):0)*(1-eio(pr(t,21.95,.3)))});
+ play(S7a,t,400,T(11,0),21.95);play(S7b,t,520,T(12,0),21.95);play(S7c,t,630,T(12,2),21.95);
+
+ /* S8 */
+ const o8=eo(pr(t,22.2,.6))*(1-eio(pr(t,28.4,.35)));
+ put(PO2,{x:L(-200,280,o8>0?eo(pr(t,22.2,.6)):0),y:1260+Math.sin(t*2+1)*6,s:.48,r:-6,o:o8});PO2.querySelector('.dim').style.opacity=.25;
+ ARC.style.opacity=o8*pr(t,24.6,.4);ARCP.style.strokeDashoffset=-t*40;
+ IC.forEach((n,i)=>{const s0=ICL[i].tt-.05,p=eio(pr(t,s0,.75));if(t<s0-.05){hide(n);hide(ICL[i].n);return}
+  const P=ARCP.getPointAtLength(p*AL);const land=pr(t,s0+.75,.25);
+  put(n,{x:L(P.x,742+i*58,land),y:L(P.y,1110,land),s:L(L(.5,1,Math.sin(p*Math.PI)*1+.0),.36,land),o:o8});
+  put(ICL[i].n,{x:P.x,y:P.y-100,o:o8*Math.sin(cl(p)*Math.PI)*1.4});});
+ play(S8a,t,390,T(13,0),28.4);play(S8b,t,500,T(14,0),28.4);play(S8c,t,620,T(14,2),28.4);play(S8d,t,1530,T(15,3),28.4,{d:.28});
+
+ /* S9 */
+ const o9=eo(pr(t,28.5,.55))*(1-eio(pr(t,32.25,.4)));put(PCH,{x:540,y:L(1350,1160,o9>0?eo(pr(t,28.5,.55)):1),s:1,o:o9});
+ const m1=eo(pr(t,T(16,1),.4));M1.style.opacity=m1;M1.style.transform=`translateY(${(1-m1)*60}px) scale(${L(.8,1,m1)})`;M1.style.transformOrigin='100% 100%';
+ TK.style.color=t>T(16,4)?'#046AD8':'#9DB0C7';
+ const ty=t>30.0&&t<T(17,1)-.05;TY.style.opacity=ty?1:0;TY.querySelectorAll('i').forEach((d,i)=>d.style.transform=`translateY(${Math.sin(t*12-i)*5}px)`);
+ const m2=eo(pr(t,T(17,1)-.05,.4));M2.style.opacity=m2;M2.style.transform=`translateY(${(1-m2)*50}px) scale(${L(.85,1,m2)})`;M2.style.transformOrigin='0 100%';
+ SH.style.backgroundPosition=`${(t*300)%400}px 0`;SH.style.backgroundSize='400px 100%';
+ play(S9a,t,390,T(16,0),30.12);play(S9b,t,500,T(16,2),30.12);play(S9c,t,390,T(17,0),32.25);play(S9d,t,500,T(17,2),32.25);
+
+ /* S10 */
+ const lg=pr(t,32.55,.55);put(LOGO,{x:540,y:870,s:lg<=0?.7:L(.7,1,eb(lg)),o:lg>0?eo(lg):0,b:(1-eo(lg))*14});
+ play(TAG,t,1070,33.05,null);ULP.style.strokeDasharray='1 1';ULP.style.strokeDashoffset=1-eio(pr(t,33.55,.55));put(UL,{x:540,y:1135,o:t>33.5?1:0});
+}
+/* line objects needing words */
+const line1={a:line(WT[0].w.slice(0,3).map(([w,tt])=>[w,tt]),F(64,700,'rgba(255,255,255,.88)')),b:line([[WT[0].w[3][0],T(0,3),K]],F(140,800,'#8CC6FF'))};
+const S2a=line(WT[1].w.map(([w,tt])=>[w,tt]),F(64,700,'#fff')),S2b=line(WT[2].w.map(([w,tt])=>[w,tt,K]),F(120,800,'#FF6B5E'));
+const S3a=line([['Jangan',T(3,0),K],['tunggu.',T(3,1),K]],F(90,800,'#fff')),S3b=line(WT[3].w.slice(2).map(([w,tt])=>[w,tt]),F(38,500,'rgba(255,255,255,.72)'));
+const S3c=line(WT[4].w.slice(0,4).map(([w,tt])=>[w,tt]),F(56,700,'#fff')),S3d=line([['jatuh.',T(4,4),K]],F(150,800,'#FF6B5E'));
+for(const n of [TAG.n])stage.appendChild(n);
+window.render=render;window.DUR=DUR;
+/* live playback (HTML deliverable) */
+if(!window.__FRAMES__){const wrap=document.getElementById('wrap'),cv=document.getElementById('cover'),vo=document.getElementById('vo');
+ const fit=()=>{const k=Math.min(innerWidth/W,innerHeight/H);wrap.style.transform=`scale(${k})`;document.body.style.width=W*k+'px'};fit();addEventListener('resize',fit);
+ render(0);cv.style.display='grid';cv.onclick=()=>{cv.style.display='none';vo.currentTime=0;vo.play();const t0=performance.now();
+  const loop=()=>{const t=vo.ended?(performance.now()-t0)/1000:vo.currentTime;render(Math.min(t,DUR));if(t<DUR)requestAnimationFrame(loop)};loop()}}
+</script></body></html>
