@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="ms"><head><meta charset="utf-8">
+<title>Storyboard Trade-in KLIKI</title>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Caveat:wght@500;700&display=block" rel="stylesheet">
+<style>
+:root{--paper:#F3EEE4;--card:#FBF7EF;--ink:#1B1B1B;--red:#D9443B;--blue:#046AD8;--deep:#0350A6;--navy:#0B1F3A;--night:#061833;--sky:#8CC6FF}
+*{box-sizing:border-box;margin:0}
+body{background:var(--paper);font-family:Kalam,cursive;color:var(--ink);padding:40px 44px 48px;width:1800px}
+header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:26px}
+h1{font-size:50px;font-weight:700;font-style:italic;letter-spacing:-.5px}
+h1 em{color:var(--blue);font-style:italic}
+.meta{font-family:Caveat;font-size:22px;color:#8a8478}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.card{background:#EAE3D6;padding:9px;border-radius:6px}
+.frame{background:var(--card);border:3px solid var(--ink);height:100%;padding:12px 14px 16px;display:flex;flex-direction:column;
+ background-image:repeating-linear-gradient(transparent 0 27px,#ece5d8 27px 28px)}
+.top{display:flex;justify-content:space-between;align-items:center}
+.num{width:34px;height:34px;border:2.5px solid var(--red);border-radius:50%;display:grid;place-items:center;color:var(--red);font-family:Caveat;font-size:24px;font-weight:700}
+.t{font-family:Caveat;font-size:21px;color:#9b9488}
+.note{font-family:Caveat;font-size:23px;color:var(--red);text-align:center;margin:4px 0 0;line-height:1.1}
+svg.d{width:100%;height:auto;display:block}
+.cap{text-align:center;margin-top:auto;padding-top:4px}
+.cap small{display:block;font-size:16px;color:#8a8478;line-height:1.25}
+.cap b{display:block;font-size:27px;line-height:1.15;margin-top:4px}
+.cap b i{color:var(--blue);font-style:normal}
+.cap b u{color:var(--red);text-decoration:none}
+/* svg text */
+.h{font-family:Kalam;font-size:19px;text-anchor:middle;fill:var(--ink)}
+.h .k{font-weight:700}
+.hw{fill:#fff}
+.n{font-family:Caveat;font-size:19px;fill:var(--red);stroke:var(--card);stroke-width:5px;paint-order:stroke;stroke-linejoin:round}
+.lbl{font-family:Kalam;font-size:12px;text-anchor:middle}
+.ar{fill:none;stroke:var(--red);stroke-width:1.8;marker-end:url(#ah)}
+.brief{grid-column:span 2}
+.brief .frame{padding:20px 28px}
+.brief h2{font-size:40px;font-style:italic;display:flex;justify-content:space-between;align-items:baseline}
+.brief h2 span{font-family:Caveat;font-size:21px;color:#9b9488;font-weight:500}
+.bg{display:grid;grid-template-columns:1fr 1fr;gap:6px 34px;margin-top:8px}
+.bk{font-family:Caveat;font-size:22px;color:var(--red);font-weight:700;margin-top:8px}
+.bv{font-size:17px;line-height:1.3}
+.sw{display:flex;gap:14px;margin-top:4px}
+.sw div{text-align:center;font-family:Caveat;font-size:17px;color:#6f695e}
+.sw i{display:block;width:62px;height:40px;border:2.5px solid var(--ink);border-radius:5px;margin-bottom:2px}
+.worlds{display:flex;align-items:center;gap:14px;margin-top:6px}
+.worlds div{border:2.5px solid var(--ink);border-radius:8px;padding:6px 18px;font-weight:700;font-size:20px}
+.worlds .a{background:var(--navy);color:#fff}.worlds .b{background:#fff;color:var(--blue)}
+.worlds span{font-family:Caveat;color:var(--red);font-size:20px}
+.need{margin-top:10px;border:2px dashed var(--red);border-radius:8px;padding:8px 14px;font-size:16px;line-height:1.35}
+.need b{font-family:Caveat;color:var(--red);font-size:21px}
+</style></head><body>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+ <filter id="r"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="2.6"/></filter>
+ <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#D9443B" stroke-width="1.8" stroke-linecap="round"/></marker>
+ <pattern id="hb" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="7" stroke="#046AD8" stroke-width="2" opacity=".55"/></pattern>
+ <pattern id="hs" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)"><line x1="0" y1="0" x2="0" y2="6" stroke="#8CC6FF" stroke-width="1.6" opacity=".7"/></pattern>
+ <pattern id="hr" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><line x1="0" y1="0" x2="0" y2="6" stroke="#D9443B" stroke-width="1.6" opacity=".6"/></pattern>
+</defs></svg>
+
+<header>
+ <h1>Phone lama, <em>tolak nilai</em> — upgrade.</h1>
+ <div class="meta">storyboard · 9:16 · ±37 dtk (anggaran, ikut VO) · 10 panel · iklan trade-in KLIKI · kinetic type + UI motion</div>
+</header>
+
+<div class="grid">
+
+<!-- 1 -->
+<div class="card"><div class="frame">
+ <div class="top"><span class="num">1</span><span class="t">0–3 dtk</span></div>
+ <div class="note">spinner berpusing → app beku → kata muncul satu-satu</div>
+ <svg class="d" viewBox="0 0 360 430">
+  <text x="180" y="36" class="h">Phone lama <tspan class="k">dah perlahan,</tspan></text>
+  <g filter="url(#r)">
+   <rect x="22" y="54" width="316" height="320" rx="16" fill="#0B1F3A" stroke="#1B1B1B" stroke-width="3"/>
+   <rect x="126" y="86" width="108" height="214" rx="18" fill="#061833" stroke="#fff" stroke-width="3"/>
+   <rect x="163" y="95" width="34" height="7" rx="3.5" fill="#fff" opacity=".8"/>
+   <g fill="#56627a"><rect x="142" y="118" width="20" height="20" rx="5"/><rect x="170" y="118" width="20" height="20" rx="5"/><rect x="198" y="118" width="20" height="20" rx="5"/>
+   <rect x="142" y="146" width="20" height="20" rx="5"/><rect x="170" y="146" width="20" height="20" rx="5"/><rect x="198" y="146" width="20" height="20" rx="5"/></g>
+   <circle cx="180" cy="222" r="20" fill="none" stroke="#2a3a58" stroke-width="5"/>
+   <path d="M180 202 A20 20 0 0 1 200 222" fill="none" stroke="#8CC6FF" stroke-width="5" stroke-linecap="round"/>
+   <rect x="134" y="318" width="92" height="26" rx="13" fill="#fff"/>
+   <rect x="250" y="96" width="34" height="16" rx="3" fill="none" stroke="#fff" stroke-width="2"/><rect x="253" y="99" width="6" height="10" fill="#D9443B"/>
+  </g>
+  <text x="180" y="336" class="lbl" fill="#0B1F3A">memuatkan…</text>
+  <text x="20" y="132" class="n">app kelabu</text><path class="ar" d="M70 140 Q110 150 136 138"/>
+  <text x="248" y="262" class="n">spinner</text><path class="ar" d="M262 248 Q230 232 206 226"/>
+  <text x="262" y="88" class="n">bateri</text>
+  <text x="180" y="404" class="n" text-anchor="middle">skrin goyang sikit (lag), bukan shake rawak</text>
+ </svg>
+ <div class="cap"><small>VO: "Phone lama dah perlahan,"</small><b>Phone lama dah <i>perlahan,</i></b></div>
+</div></div>
+
+<!-- 2 -->
+<div class="card"><div class="frame">
+ <div class="top"><span class="num">2</span><span class="t">3–5,5 dtk</span></div>
+ <div class="note">bar duit terisi → berhenti → jurang berkelip</div>
+ <svg class="d" viewBox="0 0 360 430">
+  <text x="180" y="36" class="h">tapi duit nak upgrade <tspan class="k">tak cukup?</tspan></text>
+  <g filter="url(#r)">
+   <rect x="22" y="54" width="316" height="320" rx="16" fill="#0B1F3A" stroke="#1B1B1B" stroke-width="3"/>
+   <rect x="196" y="82" width="86" height="164" rx="15" fill="url(#hs)" stroke="#8CC6FF" stroke-width="3"/>
+   <rect x="120" y="148" width="58" height="110" rx="11" fill="#061833" stroke="#fff" stroke-width="2.5" transform="rotate(-8 149 203)"/>
+   <rect x="46" y="282" width="268" height="34" rx="9" fill="none" stroke="#fff" stroke-width="2.5"/>
+   <rect x="50" y="286" width="150" height="26" rx="6" fill="url(#hs)" stroke="#8CC6FF" stroke-width="2"/>
+   <rect x="204" y="286" width="106" height="26" rx="6" fill="url(#hr)" stroke="#D9443B" stroke-width="2" stroke-dasharray="5 4"/>
+  </g>
+  <text x="239" y="268" class="lbl" fill="#fff">phone baru</text>
+  <text x="125" y="337" class="lbl" fill="#8CC6FF">duit ada</text>
+  <text x="257" y="337" class="lbl" fill="#ff8a84">tak cukup</text>
+  <text x="18" y="120" class="n">phone lama dari P1</text><path class="ar" d="M70 128 Q100 150 126 166"/>
+  <text x="300" y="72" class="n" text-anchor="middle">harga</text>
+  <text x="180" y="404" class="n" text-anchor="middle">tiada harga sebenar dalam skrip → bar tanpa angka</text>
+ </svg>
+ <div class="cap"><small>VO: "tapi duit nak upgrade tak cukup?"</small><b>duit nak upgrade <u>tak cukup?</u></b></div>
+</div></div>
+
+<!-- 3 -->
+<div class="card"><div class="frame">
+ <div class="top"><span class="num">3</span><span class="t">5,5–10 dtk</span></div>
+ <div class="note">phone gelongsor ikut graf → nilai jatuh</div>
+ <svg class="d" viewBox="0 0 360 430">
+  <text x="180" y="36" class="h"><tspan class="k">Jangan tunggu.</tspan></text>
+  <g filter="url(#r)">
+   <rect x="22" y="54" width="316" height="320" rx="16" fill="#0B1F3A" stroke="#1B1B1B" stroke-width="3"/>
+   <path d="M56 90 V322 H312" fill="none" stroke="#56627a" stroke-width="2.5"/>
+   <path d="M60 110 C120 120 150 160 190 210 S270 300 306 312" fill="none" stroke="#D9443B" stroke-width="4" stroke-linecap="round"/>
+   <rect x="96" y="70" width="38" height="68" rx="8" fill="#061833" stroke="#fff" stroke-width="2.5" transform="rotate(14 115 104)"/>
+   <rect x="232" y="232" width="38" height="68" rx="8" fill="#061833" stroke="#56627a" stroke-width="2.5" transform="rotate(32 251 266)"/>
+   <path d="M240 244 l10 14 -6 8 12 12" fill="none" stroke="#fff" stroke-width="1.6"/>
+  </g>
+  <text x="74" y="104" class="lbl" fill="#8CC6FF" text-anchor="start">nilai</text>
+  <text x="300" y="346" class="lbl" fill="#8CC6FF">masa →</text>
+  <text x="196" y="160" class="lbl" fill="#fff" style="font-size:15px;font-weight:700">Nilainya makin <tspan fill="#ff8a84">jatuh.</tspan></text>
+  <text x="270" y="210" class="n">makin malap,</text><text x="270" y="228" class="n">retak muncul</text><path class="ar" d="M296 234 Q300 250 272 258"/>
+  <text x="180" y="404" class="n" text-anchor="middle">retak ni dibawa ke P6</text>
+ </svg>
+ <div class="cap"><small>VO: "Jangan tunggu sampai phone tu langsung tak berguna. Masa tu nilainya makin jatuh."</small><b>Nilainya makin <u>jatuh.</u></b></div>
+</div></div>
+
+<!-- 4 -->
+<div class="card"><div class="frame">
+ <div class="top"><span class="num">4</span><span class="t">10–14 dtk</span></div>
+ <div class="note">wipe biru: navy → putih · Bawa → Tolak → Upgrade</div>
+ <svg class="d" viewBox="0 0 360 430">
+  <text x="180" y="36" class="h"><tspan class="k">Bawa.</tspan> <tspan class="k" fill="#046AD8">Tolak.</tspan> <tspan class="k">Upgrade.</tspan></text>
+  <g filter="url(#r)">
+   <rect x="22" y="54" width="316" height="320" rx="16" fill="#fff" stroke="#1B1B1B" stroke-width="3"/>
+   <path d="M22 70 Q22 54 38 54 H120 Q60 200 22 260 Z" fill="#0B1F3A"/>
+   <rect x="44" y="160" width="50" height="94" rx="10" fill="#061833" stroke="#1B1B1B" stroke-width="2.5" transform="rotate(-10 69 207)"/>
+   <rect x="132" y="186" width="96" height="46" rx="12" fill="#046AD8" stroke="#1B1B1B" stroke-width="2.5"/>
+   <rect x="244" y="110" width="74" height="140" rx="14" fill="url(#hb)" stroke="#046AD8" stroke-width="3"/>
+   <rect x="232" y="276" width="96" height="30" rx="15" fill="#fff" stroke="#1B1B1B" stroke-width="2"/>
+  </g>
+  <text x="180" y="214" class="lbl" fill="#fff" style="font-size:13px;font-weight:700">nilai trade-in</text>
+  <text x="280" y="296" class="lbl" fill="#0B1F3A">harga − nilai</text>
+  <path class="ar" d="M98 210 Q112 210 128 208"/>
+  <path class="ar" d="M228 200 Q238 196 242 188"/>
+  <text x="26" y="300" class="n">phone lama masuk</text>
+  <text x="128" y="268" class="n">chip nilai terbang</text>
+  <text x="246" y="96" class="n">phone baru</text>
+  <text x="180" y="404" class="n" text-anchor="middle">tukar dunia: masalah (navy) → KLIKI (putih)</text>
+ </svg>
+ <div class="cap"><small>VO: "Bawa phone lama ke KLIKI, tolak nilainya, upgrade ke phone lain."</small><b>Bawa. <i>Tolak.</i> Upgrade.</b></div>
+</div></div>
+
+<!-- 5 -->
+<div class="card"><div class="frame">
+ <div class="top"><span class="num">5</span><span class="t">14–16 dtk</span></div>
+ <div class="note">cop "hari ini" hentak → impact (sekali sahaja)</div>
+ <svg class="d" viewBox="0 0 360 430">
+  <text x="180" y="36" class="h">Dibayar <tspan class="k" fill="#046AD8">hari yang sama.</tspan></text>
+  <g filter="url(#r)">
+   <rect x="22" y="54" width="316" height="320" rx="16" fill="#fff" stroke="#1B1B1B" stroke-width="3"/>
+   <rect x="96" y="104" width="168" height="168" rx="14" fill="#fff" stroke="#1B1B1B" stroke-width="3"/>
+   <rect x="96" y="104" width="168" height="40" rx="14" fill="#046AD8"/><rect x="96" y="126" width="168" height="18" fill="#046AD8"/>
+   <circle cx="136" cy="100" r="6" fill="#fff" stroke="#1B1B1B" stroke-width="2.5"/><circle cx="224" cy="100" r="6" fill="#fff" stroke="#1B1B1B" stroke-width="2.5"/>
+   <g transform="rotate(-12 180 214)"><rect x="118" y="182" width="124" height="62" rx="10" fill="none" stroke="#046AD8" stroke-width="4"/></g>
+   <path d="M246 290 l16 16 30 -36" fill="none" stroke="#046AD8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="180" y="130" class="lbl" fill="#fff" style="font-size:14px;font-weight:700">HARI INI</text>
+  <text x="180" y="222" class="lbl" fill="#046AD8" style="font-size:22px;font-weight:700" transform="rotate(-12 180 214)">DIBAYAR</text>
+  <text x="18" y="196" class="n">cop jatuh</text><text x="18" y="214" class="n">overshoot</text><path class="ar" d="M70 220 Q96 226 116 218"/>
+  <text x="186" y="330" class="n">tanda betul dilukis</text>
+  <text x="180" y="404" class="n" text-anchor="middle">fakta: tahan diam ≥1,2 dtk</text>
+ </svg>
+ <div class="cap"><small>VO: "Dibayar hari yang sama."</small><b>Dibayar <i>hari yang sama.</i></b></div>
+</div></div>
+
+<!-- 6 -->
+<div class="card"><div class="frame">
+ <div class="top"><span class="num">6</span><span class="t">16–20 dtk</span></div>
+ <div class="note">retak dari P3 → garis imbasan turun → ikon kuasa menyala</div>
+ <svg class="d" viewBox="0 0 360 430">
+  <text x="180" y="36" class="h"><tspan class="k">Retak pun</tspan> boleh dinilai</text>
+  <g filter="url(#r)">
+   <rect x="22" y="54" width="316" height="320" rx="16" fill="#fff" stroke="#1B1B1B" stroke-width="3"/>
+   <rect x="128" y="80" width="104" height="204" rx="18" fill="#0B1F3A" stroke="#1B1B1B" stroke-width="3"/>
+   <path d="M150 110 l22 30 -12 18 30 26 -8 22 M172 140 l26 -8 M190 184 l22 6" fill="none" stroke="#fff" stroke-width="1.8"/>
+   <rect x="116" y="196" width="128" height="5" rx="2.5" fill="#8CC6FF"/>
+   <rect x="116" y="201" width="128" height="22" fill="#8CC6FF" opacity=".25"/>
+   <circle cx="180" cy="250" r="13" fill="none" stroke="#8CC6FF" stroke-width="3"/><path d="M180 236 v12" stroke="#8CC6FF" stroke-width="3" stroke-linecap="round"/>
+   <rect x="114" y="300" width="132" height="28" rx="14" fill="#046AD8" stroke="#1B1B1B" stroke-width="2"/>
+  </g>
+  <text x="180" y="319" class="lbl" fill="#fff" style="font-size:13px;font-weight:700">✓ masih boleh hidup</text>
+  <text x="250" y="186" class="n">imbasan</text><path class="ar" d="M262 192 Q262 200 248 200"/>
+  <text x="252" y="258" class="n">kuasa ON</text><path class="ar" d="M252 252 Q220 250 196 250"/>
+  <text x="20" y="130" class="n">retak</text><path class="ar" d="M54 136 Q100 140 146 130"/>
+  <text x="180" y="404" class="n" text-anchor="middle">syarat "boleh hidup" mesti jelas &amp; diam</text>
+ </svg>
+ <div class="cap"><small>VO: "Retak pun boleh dinilai, asalkan phone masih boleh hidup."</small><b><i>Retak pun</i> boleh dinilai.</b></div>
+</div></div>
+
+<!-- 7 -->
+<div class="card"><div class="frame">
+ <div class="top"><span class="num">7</span><span class="t">20–23,5 dtk</span></div>
+ <div class="note">bar dari P2 kembali → jurang pecah jadi ansuran</div>
+ <svg class="d" viewBox="0 0 360 430">
+  <text x="180" y="36" class="h">Tak cukup lagi? <tspan class="k">Boleh ansuran.</tspan></text>
+  <g filter="url(#r)">
+   <rect x="22" y="54" width="316" height="320" rx="16" fill="#fff" stroke="#1B1B1B" stroke-width="3"/>
+   <rect x="46" y="120" width="268" height="40" rx="10" fill="none" stroke="#1B1B1B" stroke-width="2.5"/>
+   <rect x="50" y="124" width="120" height="32" rx="6" fill="url(#hs)" stroke="#8CC6FF" stroke-width="2"/>
+   <rect x="172" y="124" width="72" height="32" rx="6" fill="url(#hb)" stroke="#046AD8" stroke-width="2"/>
+   <rect x="246" y="124" width="64" height="32" rx="6" fill="none" stroke="#D9443B" stroke-width="2" stroke-dasharray="5 4"/>
+   <rect x="196" y="226" width="34" height="40" rx="7" fill="#046AD8" stroke="#1B1B1B" stroke-width="2"/>
+   <rect x="238" y="226" width="34" height="40" rx="7" fill="#046AD8" stroke="#1B1B1B" stroke-width="2"/>
+   <rect x="280" y="226" width="34" height="40" rx="7" fill="#fff" stroke="#046AD8" stroke-width="2" stroke-dasharray="4 3"/>
+   <rect x="96" y="302" width="168" height="34" rx="17" fill="#0B1F3A"/>
+  </g>
+  <text x="110" y="178" class="lbl">duit ada</text><text x="208" y="178" class="lbl" fill="#046AD8">trade-in</text><text x="278" y="178" class="lbl" fill="#D9443B">baki</text>
+  <path class="ar" d="M278 186 Q276 206 260 220"/>
+  <text x="297" y="250" class="lbl" fill="#046AD8">…</text>
+  <text x="180" y="324" class="lbl" fill="#fff" style="font-size:15px;font-weight:700">dengan SPayLater</text>
+  <text x="26" y="240" class="n">baki pecah</text><text x="26" y="258" class="n">jadi blok ansuran</text>
+  <text x="180" y="404" class="n" text-anchor="middle">tiada bil. bulan/kadar dalam skrip → tanpa angka</text>
+ </svg>
+ <div class="cap"><small>VO: "Tak cukup lagi? Boleh ansuran dengan SPayLater."</small><b>Boleh <i>ansuran</i> dengan SPayLater.</b></div>
+</div></div>
+
+<!-- 8 -->
+<div class="card"><div class="frame">
+ <div class="top"><span class="num">8</span><span class="t">23,5–29 dtk</span></div>
+ <div class="note">ikon terbang ikut arka, satu per kata: gambar → contact → WhatsApp</div>
+ <svg class="d" viewBox="0 0 360 430">
+  <text x="180" y="36" class="h">Pindah data <tspan class="k" fill="#046AD8">percuma.</tspan></text>
+  <g filter="url(#r)">
+   <rect x="22" y="54" width="316" height="320" rx="16" fill="#fff" stroke="#1B1B1B" stroke-width="3"/>
+   <rect x="46" y="170" width="70" height="136" rx="13" fill="#0B1F3A" stroke="#1B1B1B" stroke-width="2.5"/>
+   <rect x="242" y="150" width="78" height="156" rx="15" fill="url(#hb)" stroke="#046AD8" stroke-width="3"/>
+   <path d="M90 168 Q180 40 270 148" fill="none" stroke="#046AD8" stroke-width="2.5" stroke-dasharray="6 6"/>
+   <rect x="104" y="104" width="30" height="26" rx="5" fill="#fff" stroke="#1B1B1B" stroke-width="2"/><path d="M107 126 l9 -10 7 6 5 -5 5 9" fill="none" stroke="#046AD8" stroke-width="2"/>
+   <circle cx="180" cy="86" r="15" fill="#fff" stroke="#1B1B1B" stroke-width="2"/><circle cx="180" cy="82" r="5" fill="#046AD8"/><path d="M171 95 q9 -9 18 0" fill="none" stroke="#046AD8" stroke-width="2.5"/>
+   <path d="M228 102 h30 a6 6 0 0 1 6 6 v14 a6 6 0 0 1 -6 6 h-18 l-8 7 v-7 h-4 a6 6 0 0 1 -6 -6 v-14 a6 6 0 0 1 6 -6z" fill="#fff" stroke="#1B1B1B" stroke-width="2"/>
+   <rect x="110" y="320" width="140" height="32" rx="16" fill="#046AD8" stroke="#1B1B1B" stroke-width="2"/>
+  </g>
+  <text x="180" y="341" class="lbl" fill="#fff" style="font-size:15px;font-weight:700">PERCUMA</text>
+  <text x="119" y="148" class="lbl">gambar</text><text x="180" y="120" class="lbl">contact</text><text x="246" y="148" class="lbl">WhatsApp</text>
+  <text x="34" y="324" class="n">lama</text><text x="290" y="324" class="n">baru</text>
+  <text x="180" y="404" class="n" text-anchor="middle">ikon chat generik, BUKAN logo WhatsApp</text>
+ </svg>
+ <div class="cap"><small>VO: "Beli phone di KLIKI, pindah data percuma. Gambar, contact, WhatsApp, semua ikut ke phone baru."</small><b>Pindah data <i>percuma.</i></b></div>
+</div></div>
+
+<!-- 9 -->
+<div class="card"><div class="frame">
+ <div class="top"><span class="num">9</span><span class="t">29–34 dtk</span></div>
+ <div class="note">snap gambar → bubble terhantar → balasan "anggaran"</div>
+ <svg class="d" viewBox="0 0 360 430">
+  <text x="180" y="36" class="h"><tspan class="k">WhatsApp gambar</tspan> phone lama anda</text>
+  <g filter="url(#r)">
+   <rect x="22" y="54" width="316" height="320" rx="16" fill="#fff" stroke="#1B1B1B" stroke-width="3"/>
+   <rect x="110" y="70" width="140" height="250" rx="20" fill="#F4F8FD" stroke="#1B1B1B" stroke-width="3"/>
+   <rect x="160" y="100" width="78" height="70" rx="12" fill="#046AD8" stroke="#1B1B1B" stroke-width="2"/>
+   <rect x="185" y="108" width="28" height="54" rx="6" fill="#0B1F3A" stroke="#fff" stroke-width="1.5"/>
+   <rect x="122" y="188" width="104" height="44" rx="12" fill="#fff" stroke="#1B1B1B" stroke-width="2"/>
+   <rect x="120" y="262" width="120" height="32" rx="16" fill="#0B1F3A"/>
+  </g>
+  <text x="174" y="206" class="lbl" fill="#0B1F3A" style="font-size:11px">anggaran harga</text><text x="174" y="222" class="lbl" fill="#046AD8" style="font-size:11px;font-weight:700">trade-in anda: …</text>
+  <text x="180" y="282" class="lbl" fill="#fff" style="font-size:12px;font-weight:700">WhatsApp kami →</text>
+  <text x="252" y="120" class="n">gambar</text><text x="252" y="138" class="n">dihantar</text>
+  <text x="18" y="196" class="n">balasan</text><path class="ar" d="M62 202 Q90 210 118 206"/>
+  <text x="18" y="290" class="n">butang CTA</text><path class="ar" d="M90 286 Q104 280 118 278"/>
+  <text x="180" y="404" class="n" text-anchor="middle">tiada angka harga — skrip tak beri</text>
+ </svg>
+ <div class="cap"><small>VO: "WhatsApp gambar phone lama anda, dapatkan anggaran harga trade-in dulu."</small><b>Dapatkan <i>anggaran harga</i> trade-in dulu.</b></div>
+</div></div>
+
+<!-- 10 -->
+<div class="card"><div class="frame">
+ <div class="top"><span class="num">10</span><span class="t">34–37 dtk</span></div>
+ <div class="note">bubble mengecil jadi logo → tagline, garis bawah dilukis</div>
+ <svg class="d" viewBox="0 0 360 430">
+  <text x="180" y="36" class="h">akhir — <tspan class="k">tenang &amp; yakin</tspan></text>
+  <g filter="url(#r)">
+   <rect x="22" y="54" width="316" height="320" rx="16" fill="#046AD8" stroke="#1B1B1B" stroke-width="3"/>
+   <rect x="96" y="160" width="168" height="56" rx="10" fill="none" stroke="#fff" stroke-width="2.5" stroke-dasharray="7 5"/>
+   <path d="M112 266 Q180 274 248 264" fill="none" stroke="#8CC6FF" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  <text x="180" y="196" class="lbl" fill="#fff" style="font-size:14px">logo rasmi KLIKI (putih)</text>
+  <text x="180" y="256" class="lbl" fill="#fff" style="font-size:18px;font-weight:700">Solusi Telefon Pintar</text>
+  <text x="246" y="146" class="n">logo</text>
+  <text x="250" y="302" class="n">garis dilukis</text>
+  <text x="180" y="404" class="n" text-anchor="middle">tahan ±3 dtk lepas VO habis</text>
+ </svg>
+ <div class="cap"><small>tanpa VO · logo + tagline sahaja</small><b><i>Solusi Telefon Pintar</i></b></div>
+</div></div>
+
+<!-- Brief -->
+<div class="card brief"><div class="frame">
+ <h2>Brief <span>dibedah dari skrip</span></h2>
+ <div class="bg">
+  <div>
+   <div class="bk">inti</div><div class="bv">Trade-in phone lama di KLIKI, upgrade ke phone lain</div>
+   <div class="bk">pesan inti</div><div class="bv">"Bawa phone lama, tolak nilainya, upgrade." Dibayar hari yang sama.</div>
+   <div class="bk">ajakan</div><div class="bv">WhatsApp gambar phone lama → dapatkan anggaran harga trade-in</div>
+   <div class="bk">untuk (tebakan)</div><div class="bv">Orang yang phone dah perlahan, nak upgrade tapi bajet tak cukup</div>
+   <div class="bk">format</div><div class="bv">9:16 · 1080×1920 · 30fps · ±37 dtk · VO + teks ikut perkataan</div>
+  </div>
+  <div>
+   <div class="bk">palet</div>
+   <div class="sw"><div><i style="background:#0B1F3A"></i>navy</div><div><i style="background:#046AD8"></i>biru KLIKI</div><div><i style="background:#8CC6FF"></i>sky</div><div><i style="background:#fff"></i>putih</div><div><i style="background:#D9443B"></i>amaran</div></div>
+   <div class="bk">dua dunia</div>
+   <div class="worlds"><div class="a">phone lama</div><span>— panel 4 →</span><div class="b">KLIKI</div></div>
+   <div class="need"><b>perlu dari awak sebelum video:</b><br>1. Fail VO (mp3/wav) · 2. Gambar phone sebenar (pilihan)<br>3. SPayLater: logo boleh guna, atau teks sahaja?<br>harga / bil. ansuran: [tiada dalam skrip → tiada angka]</div>
+  </div>
+ </div>
+</div></div>
+
+</div>
+</body></html>
