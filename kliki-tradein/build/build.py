@@ -4,8 +4,8 @@ src = open(src_name, encoding='utf-8').read()
 words = json.dumps([{"w": x["w"]} for x in json.load(open('words.json'))], ensure_ascii=False)
 def b64(p, mime): return f"data:{mime};base64," + base64.b64encode(open(p, 'rb').read()).decode()
 common = src.replace('__WORDS__', words)
-R = {'__FONT__': 'fonts/inter-latin.woff2', '__CAVEAT__': 'fonts/caveat-latin.woff2', '__VO__': 'vo.mp3', '__SPL__': '../assets/spaylater-orange.png'}
-M = {'__FONT__': 'font/woff2', '__CAVEAT__': 'font/woff2', '__VO__': 'audio/mpeg', '__SPL__': 'image/png'}
+R = {'__FONT__': 'fonts/inter-latin.woff2', '__CAVEAT__': 'fonts/caveat-latin.woff2', '__VO__': 'vo.mp3', '__SPL__': '../assets/spaylater-orange.png', '__LOGOW__': '../../brand-kit/kliki/logos/kliki-logo-white-flat-transparent-1368.png'}
+M = {'__FONT__': 'font/woff2', '__CAVEAT__': 'font/woff2', '__VO__': 'audio/mpeg', '__SPL__': 'image/png', '__LOGOW__': 'image/png'}
 r, o = common, common
 for k, v in R.items():
     r = r.replace(k, v)

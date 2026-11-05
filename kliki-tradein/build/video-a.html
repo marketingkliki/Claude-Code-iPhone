@@ -5,17 +5,18 @@
 <style>
 @font-face{font-family:Inter;src:url(__FONT__) format('woff2');font-weight:100 900;font-display:block}
 @font-face{font-family:Caveat;src:url(__CAVEAT__) format('woff2');font-weight:400 700;font-display:block}
-:root{--car:#D9862B;--grn:#1F3B2D;--ink:#3A3226;--red:#C8432F;--cream:#FBF7EF;--paper:#F4EDE1;--spl:#EE4D2D}
+:root{--car:#046AD8;--grn:#0B1F3A;--ink:#0B1F3A;--red:#C8432F;--cream:#FBF7EF;--paper:#F4EDE1;--spl:#EE4D2D}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:#000;overflow:hidden}
 #wrap{width:1080px;height:1350px;position:relative;overflow:hidden;transform-origin:0 0}
 #stage{position:absolute;inset:0;font-family:Inter,sans-serif;color:var(--ink)}
 .bg{position:absolute;inset:0}
 #bgN{background:radial-gradient(900px 800px at 50% 40%,#FBF7EF 0%,#F4EDE1 60%,#E6D9C2 100%)}
-#bgW{background:#D9862B}
+#bgW{background:#046AD8}
 #bgL{background:radial-gradient(900px 800px at 50% 40%,#FFFDF8 0%,#F8F1E4 60%,#EFE3CE 100%)}
-#bgE{background:radial-gradient(900px 800px at 50% 45%,#2C5240 0%,#1F3B2D 60%,#152A20 100%)}
-.paper{position:absolute;inset:0;background-image:repeating-linear-gradient(transparent 0 47px,rgba(58,50,38,.045) 47px 49px);pointer-events:none}
+#bgE{background:radial-gradient(900px 800px at 50% 42%,#0B63C9 0%,#0350A6 55%,#062B5C 100%)}
+#bgS{background:radial-gradient(900px 800px at 50% 40%,#FFFFFF 0%,#EEF5FD 60%,#DCEAF9 100%)}
+.paper{position:absolute;inset:0;background-image:repeating-linear-gradient(transparent 0 47px,rgba(11,31,58,.045) 47px 49px);pointer-events:none}
 .blob{position:absolute;border-radius:50%;filter:blur(80px)}
 .el{position:absolute;left:0;top:0;white-space:nowrap;will-change:transform,opacity}
 .ln{text-align:center;letter-spacing:-.02em;line-height:1}
@@ -23,10 +24,10 @@ html,body{background:#000;overflow:hidden}
 .ph{width:380px;height:780px;border-radius:66px;padding:14px;position:absolute;left:0;top:0}
 .ph .scr{position:absolute;inset:14px;border-radius:52px;overflow:hidden}
 .ph .isl{position:absolute;left:50%;top:30px;width:110px;height:32px;margin-left:-55px;border-radius:16px;background:#0C0C0C;z-index:5}
-.ph.old{background:linear-gradient(145deg,#3A3A3A,#1E1E1E 60%,#2C2C2C);box-shadow:0 40px 70px rgba(58,50,38,.32),inset 0 0 0 2px #4A4A4A}
-.ph.old .scr{background:linear-gradient(170deg,#24453A,#1A3227)}
-.ph.new{background:linear-gradient(145deg,#FFFAF2,#D9C7AC 45%,#FBF3E6 70%,#D2BE9F);box-shadow:0 50px 90px rgba(217,134,43,.35),inset 0 0 0 2px #fff}
-.ph.new .scr{background:radial-gradient(420px 520px at 30% 20%,#F7D7A8 0%,#E8A54E 50%,#D9862B 100%)}
+.ph.old{background:linear-gradient(145deg,#3A3A3A,#1E1E1E 60%,#2C2C2C);box-shadow:0 40px 70px rgba(11,31,58,.32),inset 0 0 0 2px #4A4A4A}
+.ph.old .scr{background:linear-gradient(170deg,#13294A,#0B1F3A)}
+.ph.new{background:linear-gradient(145deg,#FFFAF2,#D9C7AC 45%,#FBF3E6 70%,#D2BE9F);box-shadow:0 50px 90px rgba(4,106,216,.35),inset 0 0 0 2px #fff}
+.ph.new .scr{background:radial-gradient(420px 520px at 30% 20%,#8CC6FF 0%,#2F86E6 50%,#046AD8 100%)}
 .apps{position:absolute;left:34px;right:34px;top:110px;display:grid;grid-template-columns:repeat(4,1fr);gap:26px 22px}
 .apps i{display:block;aspect-ratio:1;border-radius:18px;background:rgba(255,255,255,.18)}
 .new .apps i{background:rgba(255,255,255,.35)}
@@ -38,19 +39,20 @@ html,body{background:#000;overflow:hidden}
 .seg{position:absolute;top:8px;bottom:8px;border-radius:20px}
 .lbl{font-size:32px;font-weight:600;text-align:center;letter-spacing:-.01em}
 .note{font-family:Caveat;font-weight:700;font-size:44px;color:var(--red)}
-.chip{background:#fff;border-radius:999px;padding:16px 30px;font-size:30px;font-weight:600;color:var(--ink);box-shadow:0 12px 26px rgba(58,50,38,.16)}
+.chip{background:#fff;border-radius:999px;padding:16px 30px;font-size:30px;font-weight:600;color:var(--ink);box-shadow:0 12px 26px rgba(11,31,58,.16)}
 .pill{border-radius:999px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:14px}
-.card{background:#fff;border-radius:44px;box-shadow:0 30px 60px rgba(58,50,38,.16)}
-.tile{width:150px;height:150px;border-radius:36px;background:#fff;border:5px solid var(--grn);box-shadow:0 20px 40px rgba(58,50,38,.14);display:grid;place-items:center}
-.ico{width:130px;height:130px;border-radius:34px;background:#fff;box-shadow:0 18px 40px rgba(58,50,38,.18);display:grid;place-items:center}
-.bub{position:absolute;border-radius:28px;box-shadow:0 6px 16px rgba(58,50,38,.10)}
-#cover{position:absolute;inset:0;z-index:99;background:rgba(31,59,45,.85);display:none;place-items:center;color:#fff;font:700 56px Inter;cursor:pointer}
+.card{background:#fff;border-radius:44px;box-shadow:0 30px 60px rgba(11,31,58,.16)}
+.tile{width:150px;height:150px;border-radius:36px;background:#fff;border:5px solid var(--grn);box-shadow:0 20px 40px rgba(11,31,58,.14);display:grid;place-items:center}
+.ico{width:130px;height:130px;border-radius:34px;background:#fff;box-shadow:0 18px 40px rgba(11,31,58,.18);display:grid;place-items:center}
+.bub{position:absolute;border-radius:28px;box-shadow:0 6px 16px rgba(11,31,58,.10)}
+#cover{position:absolute;inset:0;z-index:99;background:rgba(11,31,58,.85);display:none;place-items:center;color:#fff;font:700 56px Inter;cursor:pointer}
 </style></head><body>
 <div id="wrap"><div id="stage">
- <div class="bg" id="bgN"><div class="blob" id="b1" style="width:700px;height:700px;background:#FFFFFF;opacity:.7"></div><div class="blob" id="b2" style="width:600px;height:600px;background:#EAD7B5;opacity:.6"></div></div>
+ <div class="bg" id="bgN"><div class="blob" id="b1" style="width:700px;height:700px;background:#FFFFFF;opacity:.7"></div><div class="blob" id="b2" style="width:600px;height:600px;background:#DCE9F7;opacity:.6"></div></div>
  <div class="bg" id="bgW"></div>
- <div class="bg" id="bgL"><div class="blob" id="b3" style="width:700px;height:700px;background:#F6DDB4;opacity:.7"></div><div class="blob" id="b4" style="width:600px;height:600px;background:#FFFFFF;opacity:.9"></div></div>
- <div class="bg" id="bgE"><div class="blob" id="b5" style="width:700px;height:700px;background:#3D6B55;opacity:.6"></div></div>
+ <div class="bg" id="bgL"><div class="blob" id="b3" style="width:700px;height:700px;background:#D6E9FF;opacity:.7"></div><div class="blob" id="b4" style="width:600px;height:600px;background:#FFFFFF;opacity:.9"></div></div>
+ <div class="bg" id="bgS"></div>
+ <div class="bg" id="bgE"><div class="blob" id="b5" style="width:700px;height:700px;background:#3D9BFF;opacity:.5"></div></div>
  <div class="paper"></div>
 </div><div id="cover">▶ Tekan untuk main</div></div>
 <audio id="vo" src="__VO__" preload="auto"></audio>
@@ -76,7 +78,7 @@ function play(Lo,t,y,inT,outT,opt={}){const o=outT==null?1:1-eio(pr(t,outT,0.3))
   if(opt.drop&&w.k){const q=pr(t,w.tt-0.06,0.42);dy=q<1?L(-220,0,eb(q)):0;sc=1}
   w.s.style.opacity=e;w.s.style.transform=`translateY(${dy}px) scale(${sc})`;w.s.style.filter=e<.98?`blur(${(1-e)*10}px)`:'none'}}
 const F=(px,wt,col,extra='')=>`font-size:${px}px;font-weight:${wt};color:${col};${extra}`;
-const K='/*k*/',CAR='#D9862B',GRN='#1F3B2D',INK='#3A3226',RED='#C8432F',SUB='rgba(58,50,38,.68)';
+const K='/*k*/',CAR='#046AD8',GRN='#0B1F3A',INK='#0B1F3A',RED='#C8432F',SUB='rgba(11,31,58,.68)';
 function arrow(d){return mk(`<svg width="1080" height="1350" viewBox="0 0 1080 1350"><g fill="none" stroke="#C8432F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="${d[0]}"/><path pathLength="1" d="${d[1]}"/></g></svg>`,'',stage,'left:0;top:0')}
 function draw(paths,p){paths.forEach((pa,i)=>{const q=cl(p*paths.length-i*.6);pa.style.strokeDasharray='1 1';pa.style.strokeDashoffset=1-q;pa.style.opacity=q>0?1:0})}
 /* phones */
@@ -88,11 +90,11 @@ function oldPhone(extra=''){return mk(`<div class="scr">${APPS}${SPIN}${extra}<d
 const A1=arrow(['M150 470 Q240 470 330 545','M306 548 L334 548 L326 522']);
 const N1=mk('app beku','note');
 /* S2 bar */
-const BAR=mk('<div class="seg" id="sf" style="left:8px;background:repeating-linear-gradient(-35deg,#F2C48A 0 14px,#E8B26A 14px 28px)"></div><div class="seg" id="sg" style="border:4px dashed #C8432F;background:rgba(200,67,47,.10)"></div>','bar');
+const BAR=mk('<div class="seg" id="sf" style="left:8px;background:repeating-linear-gradient(-35deg,#8CC6FF 0 14px,#A9D4FF 14px 28px)"></div><div class="seg" id="sg" style="border:4px dashed #C8432F;background:rgba(200,67,47,.10)"></div>','bar');
 const SF=BAR.querySelector('#sf'),SG=BAR.querySelector('#sg');
-const L1=mk('Duit ada','lbl',stage,'color:#B5701F'),L2=mk('Tak cukup','lbl',stage,'color:#C8432F');
+const L1=mk('Duit ada','lbl',stage,'color:#0350A6'),L2=mk('Tak cukup','lbl',stage,'color:#C8432F');
 /* S3 graph */
-const G=mk(`<svg width="1080" height="1350" viewBox="0 0 1080 1350"><g id="ax" fill="none" stroke="rgba(58,50,38,.35)" stroke-width="5" stroke-linecap="round"><path pathLength="1" d="M150 470 V1100 H900"/></g>
+const G=mk(`<svg width="1080" height="1350" viewBox="0 0 1080 1350"><g id="ax" fill="none" stroke="rgba(11,31,58,.35)" stroke-width="5" stroke-linecap="round"><path pathLength="1" d="M150 470 V1100 H900"/></g>
 <path id="gp" d="M175 510 C330 525 420 630 520 770 S740 1050 860 1075" fill="none" stroke="#C8432F" stroke-width="10" stroke-linecap="round"/></svg>`,'',stage,'left:0;top:0');
 const GP=G.querySelector('#gp'),GL=GP.getTotalLength(),AX=G.querySelector('#ax path');
 const GA=mk('Nilai','lbl',stage,'color:'+INK+';font-size:30px'),GB=mk('Masa →','lbl',stage,'color:'+INK+';font-size:30px');
@@ -102,48 +104,48 @@ PO.querySelectorAll('.apps i').forEach((n,i)=>{if(i>11)n.style.opacity=0});
 const C1=mk('storan penuh','chip'),C2=mk('memuatkan…','chip'),C9=mk('9','',stage,'width:50px;height:50px;border-radius:50%;background:#C8432F;color:#fff;font-size:26px;font-weight:700;display:grid;place-items:center');
 const PN=mk(`<div class="scr">${APPS}<div class="glare"></div></div><div class="isl"></div>`,'ph new');
 const PNapps=PN.querySelector('.apps');PNapps.querySelectorAll('i').forEach((n,i)=>{if(i>7)n.style.opacity=0});
-const glow=mk('','',stage,'width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(242,196,138,.85) 0%,rgba(242,196,138,0) 65%)');
+const glow=mk('','',stage,'width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(140,198,255,.85) 0%,rgba(140,198,255,0) 65%)');
 stage.insertBefore(glow,PN);
 /* S4 */
-const PC=mk(`<div style="font-size:28px;font-weight:600;color:rgba(58,50,38,.6);margin-bottom:14px">Harga phone baru</div><div style="width:320px;height:28px;border-radius:14px;background:#F1E7D6;position:relative;overflow:hidden"><div id="pcb" style="position:absolute;left:0;top:0;bottom:0;border-radius:14px;background:#1F3B2D"></div><div id="pcc" style="position:absolute;top:0;bottom:0;border-radius:14px;background:#D9862B"></div></div>`,'card',stage,'width:380px;padding:28px;text-align:left;border-radius:36px');
+const PC=mk(`<div style="font-size:28px;font-weight:600;color:rgba(11,31,58,.6);margin-bottom:14px">Harga phone baru</div><div style="width:320px;height:28px;border-radius:14px;background:#F1E7D6;position:relative;overflow:hidden"><div id="pcb" style="position:absolute;left:0;top:0;bottom:0;border-radius:14px;background:#0B1F3A"></div><div id="pcc" style="position:absolute;top:0;bottom:0;border-radius:14px;background:#046AD8"></div></div>`,'card',stage,'width:380px;padding:28px;text-align:left;border-radius:36px');
 const PCB=PC.querySelector('#pcb'),PCC=PC.querySelector('#pcc');
-const CH=mk('<span id="chm" style="font-size:42px">−</span> Nilai trade-in','pill',stage,'width:360px;height:100px;background:#D9862B;color:#fff;font-size:36px;box-shadow:0 22px 44px rgba(217,134,43,.4)');
+const CH=mk('<span id="chm" style="font-size:42px">−</span> Nilai trade-in','pill',stage,'width:360px;height:100px;background:#046AD8;color:#fff;font-size:36px;box-shadow:0 22px 44px rgba(4,106,216,.4)');
 const CHM=CH.querySelector('#chm');
 const W4=[['Bawa.',T(5,0)],['Tolak.',T(6,0)],['Upgrade.',T(7,0)]].map(([w,tt])=>({n:mk(w,'ln',stage,F(88,800,GRN)),tt}));
 const S4=[line([['phone',T(5,1)],['lama',T(5,2)],['ke',T(5,3)],['KLIKI,',T(5,4),'font-weight:700;color:'+CAR]],F(40,500,SUB)),
  line([['tolak',T(6,0)],['nilainya,',T(6,1),'font-weight:700;color:'+CAR]],F(40,500,SUB)),
  line([['ke',T(7,1)],['phone',T(7,2)],['lain.',T(7,3),'font-weight:700;color:'+CAR]],F(40,500,SUB))];
 /* S5 */
-const CAL=mk(`<div style="height:140px;background:#1F3B2D;border-radius:44px 44px 0 0;display:grid;place-items:center;font-size:52px;font-weight:800;color:#FBF7EF;letter-spacing:.04em">HARI INI</div>
-<div style="position:absolute;left:120px;top:-22px;width:40px;height:56px;border-radius:20px;background:#3A3226"></div><div style="position:absolute;right:120px;top:-22px;width:40px;height:56px;border-radius:20px;background:#3A3226"></div>
+const CAL=mk(`<div style="height:140px;background:#0B1F3A;border-radius:44px 44px 0 0;display:grid;place-items:center;font-size:52px;font-weight:800;color:#FBF7EF;letter-spacing:.04em">HARI INI</div>
+<div style="position:absolute;left:120px;top:-22px;width:40px;height:56px;border-radius:20px;background:#0B1F3A"></div><div style="position:absolute;right:120px;top:-22px;width:40px;height:56px;border-radius:20px;background:#0B1F3A"></div>
 <div style="padding:36px 56px;display:grid;grid-template-columns:repeat(5,1fr);gap:20px">${'<i style="display:block;height:42px;border-radius:12px;background:#F4EDE1"></i>'.repeat(10)}</div>`,'card',stage,'width:580px;height:480px');
-const STAMP=mk('DIBAYAR','',stage,'font-size:96px;font-weight:800;color:#D9862B;border:10px solid #D9862B;border-radius:32px;padding:10px 38px;background:rgba(255,255,255,.94);letter-spacing:.02em');
-const CHK=mk('<svg width="140" height="140" viewBox="0 0 150 150"><circle cx="75" cy="75" r="70" fill="#1F3B2D"/><path id="ck" pathLength="1" d="M42 78 L66 101 L110 52" fill="none" stroke="#FBF7EF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+const STAMP=mk('DIBAYAR','',stage,'font-size:96px;font-weight:800;color:#046AD8;border:10px solid #046AD8;border-radius:32px;padding:10px 38px;background:rgba(255,255,255,.94);letter-spacing:.02em');
+const CHK=mk('<svg width="140" height="140" viewBox="0 0 150 150"><circle cx="75" cy="75" r="70" fill="#0B1F3A"/><path id="ck" pathLength="1" d="M42 78 L66 101 L110 52" fill="none" stroke="#FBF7EF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/></svg>');
 const CK=CHK.querySelector('#ck');
 const S5a=line([['Dibayar',T(8,0)]],F(60,700,INK)),S5b=line([['hari',T(8,1),K],['yang',T(8,2),K],['sama.',T(8,3),K]],F(80,800,CAR));
 /* S6 */
-const PR=oldPhone(CRACK+'<svg class="pw" viewBox="0 0 120 120" style="position:absolute;left:50%;top:360px;width:120px;margin-left:-60px"><circle cx="60" cy="64" r="40" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-dasharray="200 52" transform="rotate(-50 60 64)"/><path d="M60 14 V60" stroke="currentColor" stroke-width="10" stroke-linecap="round"/></svg><div class="scan" style="position:absolute;left:0;right:0;height:120px;background:linear-gradient(180deg,rgba(242,196,138,0),rgba(242,196,138,.5) 85%,#FBE3BF 100%)"></div>');
+const PR=oldPhone(CRACK+'<svg class="pw" viewBox="0 0 120 120" style="position:absolute;left:50%;top:360px;width:120px;margin-left:-60px"><circle cx="60" cy="64" r="40" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round" stroke-dasharray="200 52" transform="rotate(-50 60 64)"/><path d="M60 14 V60" stroke="currentColor" stroke-width="10" stroke-linecap="round"/></svg><div class="scan" style="position:absolute;left:0;right:0;height:120px;background:linear-gradient(180deg,rgba(140,198,255,0),rgba(140,198,255,.5) 85%,#CFE8FF 100%)"></div>');
 PR.querySelector('.spin').remove();
 const PRcrk=[...PR.querySelectorAll('.crk path')],PRpw=PR.querySelector('.pw'),PRscan=PR.querySelector('.scan'),PRdim=PR.querySelector('.dim');
-const OK=mk('<svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#FBF7EF"/><path d="M12 23 L19 30 L32 15" fill="none" stroke="#1F3B2D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>Masih boleh hidup','pill',stage,'height:96px;padding:0 42px;background:#1F3B2D;color:#FBF7EF;font-size:38px;box-shadow:0 18px 36px rgba(31,59,45,.3)');
+const OK=mk('<svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#FBF7EF"/><path d="M12 23 L19 30 L32 15" fill="none" stroke="#0B1F3A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>Masih boleh hidup','pill',stage,'height:96px;padding:0 42px;background:#0B1F3A;color:#FBF7EF;font-size:38px;box-shadow:0 18px 36px rgba(11,31,58,.3)');
 const S6a=line([['Retak',T(9,0),K],['pun',T(9,1),K]],F(110,800,CAR)),S6b=line([['boleh',T(9,2)],['dinilai,',T(9,3)]],F(60,700,INK)),
  S6c=line(WT[10].w.map(([w,tt])=>[w,tt]),F(38,500,SUB));
 /* S7 */
-const BAR2=mk('<div class="seg" id="a" style="left:8px;background:repeating-linear-gradient(-35deg,#F2C48A 0 14px,#E8B26A 14px 28px)"></div><div class="seg" id="b" style="background:#1F3B2D"></div><div class="seg" id="c" style="border:4px dashed #C8432F;background:rgba(200,67,47,.08)"></div>','bar');
+const BAR2=mk('<div class="seg" id="a" style="left:8px;background:repeating-linear-gradient(-35deg,#8CC6FF 0 14px,#A9D4FF 14px 28px)"></div><div class="seg" id="b" style="background:#0B1F3A"></div><div class="seg" id="c" style="border:4px dashed #C8432F;background:rgba(200,67,47,.08)"></div>','bar');
 const B2=['a','b','c'].map(i=>BAR2.querySelector('#'+i));
-const B2L=[mk('Duit ada','lbl',stage,'color:#B5701F;font-size:30px'),mk('Trade-in','lbl',stage,'color:#1F3B2D;font-size:30px'),mk('Baki','lbl',stage,'color:#C8432F;font-size:30px')];
+const B2L=[mk('Duit ada','lbl',stage,'color:#0350A6;font-size:30px'),mk('Trade-in','lbl',stage,'color:#0B1F3A;font-size:30px'),mk('Baki','lbl',stage,'color:#C8432F;font-size:30px')];
 const CALI='<svg width="70" height="70" viewBox="0 0 70 70"><rect x="8" y="14" width="54" height="48" rx="10" fill="none" stroke="currentColor" stroke-width="6"/><path d="M8 28 H62 M22 6 V18 M48 6 V18" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg>';
-const TL=[0,1,2].map(()=>mk(CALI,'tile',stage,'color:#1F3B2D'));
+const TL=[0,1,2].map(()=>mk(CALI,'tile',stage,'color:#0B1F3A'));
 const SPL=mk('<img src="__SPL__" style="width:400px;display:block;border-radius:24px;box-shadow:0 22px 44px rgba(238,77,45,.3)">');
 const S7a=line(WT[11].w.map(([w,tt])=>[w,tt]),F(60,700,INK)),S7b=line([['Boleh',T(12,0),K],['ansuran',T(12,1),K]],F(96,800,CAR)),S7c=line([['dengan',T(12,2)]],F(40,500,SUB));
 /* S8 */
 const PO2=oldPhone('');PO2.querySelector('.spin').remove();
-const ARC=mk('<svg width="1080" height="1350" viewBox="0 0 1080 1350"><path id="arc" d="M290 720 Q540 470 790 700" fill="none" stroke="#D9862B" stroke-width="7" stroke-dasharray="4 22" stroke-linecap="round"/></svg>','',stage,'left:0;top:0');
+const ARC=mk('<svg width="1080" height="1350" viewBox="0 0 1080 1350"><path id="arc" d="M290 720 Q540 470 790 700" fill="none" stroke="#046AD8" stroke-width="7" stroke-dasharray="4 22" stroke-linecap="round"/></svg>','',stage,'left:0;top:0');
 const ARCP=ARC.querySelector('#arc'),AL=ARCP.getTotalLength();
 const IC=[
- '<svg width="78" height="78" viewBox="0 0 78 78"><rect x="6" y="12" width="66" height="54" rx="12" fill="#F4EDE1" stroke="#1F3B2D" stroke-width="6"/><circle cx="26" cy="31" r="7" fill="#D9862B"/><path d="M10 60 L32 40 L46 52 L56 44 L70 58" fill="none" stroke="#1F3B2D" stroke-width="6" stroke-linejoin="round"/></svg>',
- '<svg width="78" height="78" viewBox="0 0 78 78"><circle cx="39" cy="28" r="14" fill="#1F3B2D"/><path d="M12 70 C14 50 64 50 66 70" fill="#1F3B2D"/></svg>',
- '<svg width="78" height="78" viewBox="0 0 78 78"><path d="M14 10 H64 A10 10 0 0 1 74 20 V48 A10 10 0 0 1 64 58 H34 L18 70 V58 H14 A10 10 0 0 1 4 48 V20 A10 10 0 0 1 14 10Z" fill="#D9862B"/><circle cx="24" cy="34" r="5" fill="#fff"/><circle cx="39" cy="34" r="5" fill="#fff"/><circle cx="54" cy="34" r="5" fill="#fff"/></svg>'
+ '<svg width="78" height="78" viewBox="0 0 78 78"><rect x="6" y="12" width="66" height="54" rx="12" fill="#F4EDE1" stroke="#0B1F3A" stroke-width="6"/><circle cx="26" cy="31" r="7" fill="#046AD8"/><path d="M10 60 L32 40 L46 52 L56 44 L70 58" fill="none" stroke="#0B1F3A" stroke-width="6" stroke-linejoin="round"/></svg>',
+ '<svg width="78" height="78" viewBox="0 0 78 78"><circle cx="39" cy="28" r="14" fill="#0B1F3A"/><path d="M12 70 C14 50 64 50 66 70" fill="#0B1F3A"/></svg>',
+ '<svg width="78" height="78" viewBox="0 0 78 78"><path d="M14 10 H64 A10 10 0 0 1 74 20 V48 A10 10 0 0 1 64 58 H34 L18 70 V58 H14 A10 10 0 0 1 4 48 V20 A10 10 0 0 1 14 10Z" fill="#046AD8"/><circle cx="24" cy="34" r="5" fill="#fff"/><circle cx="39" cy="34" r="5" fill="#fff"/><circle cx="54" cy="34" r="5" fill="#fff"/></svg>'
 ].map(s=>mk(s,'ico'));
 const ICL=[['Gambar',T(15,0)],['Contact',T(15,1)],['WhatsApp',T(15,2)]].map(([w,tt])=>({n:mk(w,'note',stage,'font-size:46px'),tt}));
 const S8a=line(WT[13].w.map(([w,tt])=>[w,tt]),F(50,600,SUB)),S8b=line([['pindah',T(14,0)],['data',T(14,1)]],F(68,700,INK)),
@@ -151,37 +153,38 @@ const S8a=line(WT[13].w.map(([w,tt])=>[w,tt]),F(50,600,SUB)),S8b=line([['pindah'
 stage.appendChild(PN);IC.forEach(n=>stage.appendChild(n));ICL.forEach(o=>stage.appendChild(o.n));
 /* S9 chat */
 const PCH=mk(`<div class="scr" style="background:#F7F1E6">
- <div style="position:absolute;left:0;right:0;top:0;height:150px;background:#1F3B2D;display:flex;align-items:flex-end;gap:16px;padding:0 26px 22px">
-  <div style="width:62px;height:62px;border-radius:50%;background:#FBF7EF;color:#1F3B2D;display:grid;place-items:center;font-weight:800;font-size:30px">K</div>
+ <div style="position:absolute;left:0;right:0;top:0;height:150px;background:#0B1F3A;display:flex;align-items:flex-end;gap:16px;padding:0 26px 22px">
+  <div style="width:62px;height:62px;border-radius:50%;background:#FBF7EF;color:#0B1F3A;display:grid;place-items:center;font-weight:800;font-size:30px">K</div>
   <div style="color:#FBF7EF;font-size:30px;font-weight:700;line-height:1.1">KLIKI<div style="font-size:20px;font-weight:500;opacity:.8">dalam talian</div></div></div>
- <div class="bub" id="m1" style="right:20px;top:190px;width:230px;padding:12px;background:#F6DDB4">
+ <div class="bub" id="m1" style="right:20px;top:190px;width:230px;padding:12px;background:#D6E9FF">
   <div style="height:190px;border-radius:18px;background:linear-gradient(160deg,#E8DCC8,#CDBB9E);display:grid;place-items:center"><div style="width:84px;height:160px;border-radius:18px;background:linear-gradient(145deg,#3A3A3A,#1E1E1E);border:3px solid #4A4A4A"></div></div>
   <div style="text-align:right;font-size:20px;color:#8A7A62;margin-top:6px">12:41 <span id="tk" style="font-weight:700">✓✓</span></div></div>
  <div class="bub" id="ty" style="left:20px;top:460px;width:110px;height:62px;background:#fff;display:flex;gap:10px;align-items:center;justify-content:center"><i style="width:12px;height:12px;border-radius:50%;background:#CDBB9E"></i><i style="width:12px;height:12px;border-radius:50%;background:#CDBB9E"></i><i style="width:12px;height:12px;border-radius:50%;background:#CDBB9E"></i></div>
  <div class="bub" id="m2" style="left:20px;top:460px;width:280px;padding:22px 24px;background:#fff">
-  <div style="font-size:26px;font-weight:700;color:#3A3226;line-height:1.25">Anggaran harga trade-in</div>
-  <div style="margin-top:16px;height:22px;width:190px;border-radius:11px;background:linear-gradient(90deg,#F4EDE1,#EAD7B5,#F4EDE1)" id="sh"></div>
+  <div style="font-size:26px;font-weight:700;color:#0B1F3A;line-height:1.25">Anggaran harga trade-in</div>
+  <div style="margin-top:16px;height:22px;width:190px;border-radius:11px;background:linear-gradient(90deg,#F4EDE1,#DCE9F7,#F4EDE1)" id="sh"></div>
   <div style="margin-top:10px;height:22px;width:130px;border-radius:11px;background:#F4EDE1"></div></div>
 </div><div class="isl"></div>`,'ph new');
 const M1=PCH.querySelector('#m1'),TY=PCH.querySelector('#ty'),M2=PCH.querySelector('#m2'),TK=PCH.querySelector('#tk'),SH=PCH.querySelector('#sh');
 const S9a=line([['WhatsApp',T(16,0),K],['gambar',T(16,1),K]],F(84,800,CAR)),S9b=line(WT[16].w.slice(2).map(([w,tt])=>[w,tt]),F(54,700,INK)),
  S9c=line([['Dapatkan',T(17,0),K],['anggaran',T(17,1),K]],F(74,800,CAR)),S9d=line(WT[17].w.slice(2).map(([w,tt])=>[w,tt]),F(54,700,INK));
 /* S10 */
-const LOGO=mk('KLIKI','',stage,'font-size:190px;font-weight:800;color:#FBF7EF;letter-spacing:.02em');
-const TAG=line([['Solusi',33.05],['Telefon',33.2],['Pintar',33.35]],F(62,700,'#FBF7EF'));
-const UL=mk('<svg width="600" height="40" viewBox="0 0 600 40"><path id="ul" pathLength="1" d="M10 26 Q300 6 590 22" fill="none" stroke="#D9862B" stroke-width="10" stroke-linecap="round"/></svg>');
+const LOGO=mk('<img src="__LOGOW__" style="width:720px;display:block">');
+const TAG=line([['Solusi',33.05],['Telefon',33.2],['Pintar',33.35]],F(62,700,'#FFFFFF'));
+const UL=mk('<svg width="600" height="40" viewBox="0 0 600 40"><path id="ul" pathLength="1" d="M10 26 Q300 6 590 22" fill="none" stroke="#8CC6FF" stroke-width="10" stroke-linecap="round"/></svg>');
 const ULP=UL.querySelector('#ul');
 /* text lines */
 const line1={a:line(WT[0].w.slice(0,3).map(([w,tt])=>[w,tt]),F(60,600,INK)),b:line([[WT[0].w[3][0],T(0,3),K]],F(128,800,CAR))};
 const S2a=line(WT[1].w.map(([w,tt])=>[w,tt]),F(60,700,INK)),S2b=line(WT[2].w.map(([w,tt])=>[w,tt,K]),F(110,800,RED));
 const S3a=line([['Jangan',T(3,0),K],['tunggu.',T(3,1),K]],F(84,800,GRN)),S3b=line(WT[3].w.slice(2).map(([w,tt])=>[w,tt]),F(38,500,SUB));
 const S3c=line(WT[4].w.slice(0,4).map(([w,tt])=>[w,tt]),F(54,700,INK)),S3d=line([['jatuh.',T(4,4),K]],F(140,800,RED));
-const bgN=document.getElementById('bgN'),bgW=document.getElementById('bgW'),bgL=document.getElementById('bgL'),bgE=document.getElementById('bgE');
+const bgN=document.getElementById('bgN'),bgW=document.getElementById('bgW'),bgL=document.getElementById('bgL'),bgE=document.getElementById('bgE'),bgS=document.getElementById('bgS');
 const BL=['b1','b2','b3','b4','b5'].map(i=>document.getElementById(i));
 const DUR=35.6;
 function render(t){
  const wx=860,wy=1015;const R1=L(0,1800,eio(pr(t,9.85,.5))),R2=L(0,1800,eio(pr(t,10.0,.5)));
  bgW.style.clipPath=`circle(${R1}px at ${wx}px ${wy}px)`;bgL.style.clipPath=`circle(${R2}px at ${wx}px ${wy}px)`;
+ bgS.style.opacity=eio(pr(t,15.45,.4))*(1-eio(pr(t,22.05,.4)));
  bgE.style.clipPath=`circle(${L(0,1800,eio(pr(t,32.2,.6)))}px at 400px 900px)`;
  pb(BL[0],300+Math.sin(t*.4)*110,380+Math.cos(t*.3)*80);pb(BL[1],820+Math.cos(t*.35)*90,1050+Math.sin(t*.45)*90);
  pb(BL[2],260+Math.sin(t*.3)*110,420+Math.cos(t*.4)*90);pb(BL[3],830+Math.cos(t*.33)*110,1000+Math.sin(t*.38)*80);
@@ -254,7 +257,7 @@ function render(t){
  /* S6 */
  const r6=eo(pr(t,15.55,.45))*(1-eio(pr(t,19.1,.3)));put(PR,{x:540,y:L(880,720,r6)+Math.sin(t*2)*4+pr(t,19.1,.3)*100,s:.58,r:L(6,-2,r6),o:r6});
  draw(PRcrk,pr(t,T(9,0),.45));const sc=pr(t,16.3,.95);PRscan.style.top=`${L(-120,752,sc)}px`;PRscan.style.opacity=sc>0&&sc<1?1:0;
- const pw=pr(t,T(10,0),.3);PRpw.style.color=pw>0?'#F2C48A':'#3E5A4C';PRpw.style.filter=pw>0?`drop-shadow(0 0 ${18*eo(pw)}px #F2C48A)`:'none';PRdim.style.opacity=L(.35,0,pw);
+ const pw=pr(t,T(10,0),.3);PRpw.style.color=pw>0?'#8CC6FF':'#3B4A63';PRpw.style.filter=pw>0?`drop-shadow(0 0 ${18*eo(pw)}px #8CC6FF)`:'none';PRdim.style.opacity=L(.35,0,pw);
  const okp=pr(t,T(10,2)-.05,.35);put(OK,{x:540,y:1075,s:okp<=0?.4:L(.4,1,eb(okp)),o:(okp>0?cl(okp*3):0)*(1-eio(pr(t,19.1,.3)))});
  play(S6a,t,150,T(9,0),19.1);play(S6b,t,255,T(9,2),19.1);play(S6c,t,335,T(10,0),19.1,{d:.28});
 
@@ -266,7 +269,7 @@ function render(t){
  B2[2].style.left='calc(70% + 4px)';B2[2].style.right='8px';B2[2].style.opacity=(t<19.7?0:(t<20.4?(Math.sin((t-19.7)*20)>0?1:.4):1))*(1-split);
  B2L.forEach((n,i)=>put(n,{x:[250,555,815][i],y:790,o:b7*pr(t,19.5+i*.15,.25)*(i==2?1-split:1)}));
  TL.forEach((n,i)=>{const p=eo(pr(t,T(12,1)+i*.09,.45)),q=pr(t,T(12,3),.3);
-  n.style.borderColor=q>0?'#EE4D2D':'#1F3B2D';n.style.color=q>0?'#EE4D2D':'#1F3B2D';
+  n.style.borderColor=q>0?'#EE4D2D':'#0B1F3A';n.style.color=q>0?'#EE4D2D':'#0B1F3A';
   put(n,{x:L(815,330+i*210,p),y:L(700,960,p),s:L(.4,1,p),r:L(20,0,p),o:(p>0?1:0)*(1-eio(pr(t,21.95,.3)))})});
  const sl=pr(t,T(12,3)-.04,.38);put(SPL,{x:540,y:445,s:sl<=0?.5:L(.5,1,eb(sl)),o:(sl>0?cl(sl*3):0)*(1-eio(pr(t,21.95,.3)))});
  play(S7a,t,150,T(11,0),21.95);play(S7b,t,255,T(12,0),21.95);play(S7c,t,345,T(12,2),21.95);
@@ -284,7 +287,7 @@ function render(t){
  /* S9 */
  const o9=eo(pr(t,28.5,.55))*(1-eio(pr(t,32.25,.4)));put(PCH,{x:540,y:L(960,800,o9>0?eo(pr(t,28.5,.55)):1),s:.75,o:o9});
  const m1=eo(pr(t,T(16,1),.4));M1.style.opacity=m1;M1.style.transform=`translateY(${(1-m1)*60}px) scale(${L(.8,1,m1)})`;M1.style.transformOrigin='100% 100%';
- TK.style.color=t>T(16,4)?'#D9862B':'#CDBB9E';
+ TK.style.color=t>T(16,4)?'#046AD8':'#CDBB9E';
  const ty=t>30.0&&t<T(17,1)-.05;TY.style.opacity=ty?1:0;TY.querySelectorAll('i').forEach((d,i)=>d.style.transform=`translateY(${Math.sin(t*12-i)*5}px)`);
  const m2=eo(pr(t,T(17,1)-.05,.4));M2.style.opacity=m2;M2.style.transform=`translateY(${(1-m2)*50}px) scale(${L(.85,1,m2)})`;M2.style.transformOrigin='0 100%';
  SH.style.backgroundPosition=`${(t*300)%400}px 0`;SH.style.backgroundSize='400px 100%';
